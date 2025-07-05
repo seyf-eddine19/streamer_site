@@ -1,0 +1,51 @@
+{% load static %}
+{% if services %}
+<section class="section features">
+  <div class="container">
+    <h2 class="title-2">
+      {% if lang == "ar" %}
+        تعرف على أهم <span class="highlight">مميزاتنا</span>
+      {% else %}
+        CHECK OUT OUR MOST <br>IMPORTANT <span class="highlight">FEATURES</span>
+      {% endif %}
+    </h2>
+    <p class="subtitle-2">
+      {% if lang == "ar" %}
+        تعرف على أبرز المزايا التي نقدمها لمجتمعنا ومتابعينا!
+      {% else %}
+        Offer sneak peeks and previews of upcoming games, including trailers, screenshots, and information about release.
+      {% endif %}
+    </p>
+    
+    <div class="features-grid">
+      {% for service in services %}
+      <div class="feature-card">
+        {# إذا كان الترتيب فردي، ضع الأيقونة في الأعلى #}
+        {% if forloop.counter0|divisibleby:2 %}
+          <div class="feature-icon">
+            <i class="{{ service.icon }}"></i>
+          </div>
+        {% endif %}
+
+        <h3 class="feature-title">
+          {% if lang == "ar" %}{{ service.title_ar }}{% else %}{{ service.title_en }}{% endif %}
+        </h3>
+        <p class="feature-text">
+          {% if lang == "ar" %}{{ service.description_ar }}{% else %}{{ service.description_en }}{% endif %}
+        </p>
+
+        {# إذا كان الترتيب زوجي، ضع الأيقونة في الأسفل #}
+        {% if not forloop.counter0|divisibleby:2 %}
+          <div class="feature-icon">
+            <i class="{{ service.icon }}"></i>
+          </div>
+        {% endif %}
+
+        <div class="dummy d4"></div>
+        <div class="dummy d6"></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

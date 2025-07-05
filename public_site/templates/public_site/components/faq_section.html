@@ -1,0 +1,39 @@
+{% if faqs %}
+<section class="section faq">
+  <div class="title-container">
+    <div>
+      <h4 class="subtitle">{% if lang == 'ar' %}الأسئلة الشائعة{% else %}FAQ's{% endif %}</h4>
+      <h2 class="title">{% if lang == 'ar' %}الأسئلة المتكررة{% else %}Frequently Asked Questions{% endif %}</h2>
+    </div>
+  </div>
+
+  <div class="container faq-grid">
+  {% for faq in faqs %}
+    <div class="faq-item">
+      <div class="faq-hr"></div>
+      <div class="faq-header">
+        <span class="faq-question">
+          {% if lang == 'ar' %}
+            {{ faq.question_ar }}
+          {% else %}
+            {{ faq.question_en }}
+          {% endif %}
+        </span>
+        <i class='faq-icon bx bx-chevron-down'></i>
+      </div>
+      <div class="faq-body hide">
+        {% if lang == 'ar' %}
+          {{ faq.answer_ar }}
+        {% else %}
+          {{ faq.answer_en }}
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    <p style="text-align: center;">
+      {% if lang == 'ar' %} لا توجد أسئلة حالياً {% else %} No FAQs available right now. {% endif %}
+    </p>
+  {% endfor %}
+  </div>
+</section>
+{% endif %}

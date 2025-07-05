@@ -1,0 +1,57 @@
+{% load static %}
+{% if testimonials %}
+<section class="section testimonials">
+  <div class="title-container">
+    <div>
+      <h4 class="subtitle">{% if lang == 'ar' %} آراء العملاء {% else %}Testimonials{% endif %}</h4>
+      <h2 class="title">{% if lang == 'ar' %} ماذا يقول عملاؤنا؟ {% else %}What Our Clients Say{% endif %}</h2>
+    </div>
+  </div>
+
+  <div class="title-container">
+    <div class="stats">
+      <h4 class="subtitle">{% if lang == 'ar' %}إجمالي التقييمات{% else %}Total Reviews{% endif %}</h4>
+      <h3 class="title">{{ total_reviews }}</h3>
+    </div>
+    <div class="title-btns">
+      <div class="swiper-buttons testimonial-buttons">
+        <button class="swiper-button-prev testimonial-button-prev"></button>
+        <button class="swiper-button-next testimonial-button-next"></button>
+      </div>
+      <div><a href="#" class="button">{% if lang == 'ar' %}عرض الكل{% else %}View All Testimonials{% endif %} <i class='bx bx-right-arrow-alt'></i></a></div>
+    </div>
+  </div>
+
+  <div class="swiper testimonial-swiper container">
+    <div class="swiper-wrapper">
+      {% for t in testimonials %}
+      <div class="swiper-slide testimonial-card">
+        <div class="testimonial-header">
+          <div>
+            <h5>{{ t.name }}</h5>
+            <small>{{ t.address }}</small>
+          </div>
+          <div class="social-icons">
+            {% if t.facebook_url %}<a href="{{ t.facebook_url }}"><i class='bx bxl-facebook'></i></a>{% endif %}
+            {% if t.twitter_url %}<a href="{{ t.twitter_url }}"><i class='bx bxl-twitter'></i></a>{% endif %}
+            {% if t.linkedin_url %}<a href="{{ t.linkedin_url }}"><i class='bx bxl-linkedin'></i></a>{% endif %}
+          </div>
+        </div>
+        <div class="stars">
+          {% for i in "12345"|make_list %}
+            <i class='bx bxs-star{% if forloop.counter > t.rating %}-half{% endif %}'></i>
+          {% endfor %}
+        </div>
+        <p>
+          {% if lang == 'ar' %}
+            {{ t.content_ar }}
+          {% else %}
+            {{ t.content_en }}
+          {% endif %}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

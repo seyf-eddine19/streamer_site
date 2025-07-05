@@ -1,0 +1,69 @@
+{% load static %}
+{% if games %}
+<section class="section games">
+  <h2 class="title-2">
+    {% if lang == "ar" %}
+      اختر <br><span class="highlight">لعبتك المفضلة</span>
+    {% else %}
+      CHOOSE YOUR <br><span class="highlight">FAVORITE</span> GAMES
+    {% endif %}
+  </h2>
+  <p class="subtitle-2">
+    {% if lang == "ar" %}
+      استعرض لمحات وعروض لأحدث الألعاب، تتضمن لقطات شاشة ومعلومات الإطلاق.
+    {% else %}
+      Offer sneak peeks and previews of upcoming games, including trailers, screenshots, and information about release.
+    {% endif %}
+  </p>
+
+  <div class="swiper-container">
+    <div class="swiper gameSwiper">
+      <div class="swiper-wrapper">
+        {% for game in games %}
+        <div class="swiper-slide"  data-name="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
+          <a href="{{ game.url|default:'#' }}">
+            <img src="{% if game.image %}{{ game.image.url }}{% else %}{% static 'public_site/img/default-game.png' %}{% endif %}" 
+                 alt="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
+          </a>
+        </div>
+        {% endfor %}
+
+        {% if games %}
+        {% for game in games %}
+        <div class="swiper-slide"  data-name="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
+          <a href="{{ game.url|default:'#' }}">
+            <img src="{% if game.image %}{{ game.image.url }}{% else %}{% static 'public_site/img/default-game.png' %}{% endif %}" 
+                 alt="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
+          </a>
+        </div>
+        {% endfor %}
+        {% for game in games %}
+        <div class="swiper-slide"  data-name="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
+          <a href="{{ game.url|default:'#' }}">
+            <img src="{% if game.image %}{{ game.image.url }}{% else %}{% static 'public_site/img/default-game.png' %}{% endif %}" 
+                 alt="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
+          </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="frame-overlay">
+      <img src="{% static 'public_site/img/game-frame.png' %}" alt="Frame Overlay">
+      <h6 class="game-name" id="game-name">
+        {% if games %}
+          {% if lang == "ar" %}
+            {{ games.0.name_ar }}
+          {% else %}
+            {{ games.0.name_en }}
+          {% endif %}
+        {% else %}
+          {% if lang == "ar" %}لعبتي{% else %}My Game{% endif %}
+        {% endif %}
+      </h6>
+    </div>
+  </div>
+</section>
+{% endif %}
+

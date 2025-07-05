@@ -1,1 +1,10 @@
-
+{% load static %}
+<div class="swiper client-swiper">
+  <div class="swiper-wrapper clients-logos">
+    {% for logo in client_logos %}
+      <div class="swiper-slide">
+        <img src="{{ logo.logo.url }}" alt="{{ logo.name_en }}">
+      </div>
+    {% endfor %}
+  </div>
+</div>
