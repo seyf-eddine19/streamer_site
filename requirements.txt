@@ -1,0 +1,22 @@
+# Django and environment management
+Django==3.2.4
+python-dotenv==1.0.1
+
+# Optional for production (recommended)
+gunicorn==20.1.0
+
+# Database support (only if needed)
+# psycopg2-binary==2.9.9   # PostgreSQL
+# mysqlclient==2.2.4       # MySQL
+# dj-database-url
+
+# For static files in production (if using whitenoise)
+# whitenoise==6.6.0
+
+# Translation files handling (optional but helpful)
+Babel==2.14.0
+
+# For Windows compatibility if needed
+# colorama==0.4.6
+
+# Add any other packages your project uses here
