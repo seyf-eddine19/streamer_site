@@ -1,0 +1,109 @@
+{% extends 'team_dashboard/base.html' %}
+
+{% block title %} لوحة التحكم | المهام {% endblock %}
+
+{% block content %}
+<div class="container my-3">
+    <!-- 🔹 عنوان الصفحة -->
+    <div class="bg-dark text-white text-center p-4 rounded shadow-sm">
+        <h2 class="fw-bold"><i class="bi bi-check2-square"></i> إدارة المهام</h2>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center my-3">
+        <h5 class="text-muted mb-3 mb-md-0"><i class="bi bi-list-check"></i> قائمة المهام</h5>
+    
+        <!-- 📌 نموذج الفلترة -->
+        <form method="GET" class="filter-form w-md-auto">
+            <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+                <div>{{ filter_form.status }}</div>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary rounded-pill shadow-sm">إلغاء التصفية</a>
+                    <button type="submit" class="btn btn-primary rounded-pill shadow-sm">
+                        <i class="bi bi-funnel"></i> تصفية
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- ⚠️ رسائل التنبيهات -->
+    {% if messages %}
+        <div class="alert-container my-3">
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %} alert-success {% elif message.tags == 'error' %} alert-danger {% endif %} shadow-sm">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- 📋 قائمة المهام -->
+    {% for project, statuses in grouped_tasks.items %}
+    <div class="card my-4 shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0"><i class="bi bi-folder"></i> {{ project }}</h5>
+        </div>
+        <div class="card-body">
+            {% for status, tasks in statuses.items %}
+                <h4 class="badge 
+                    {% if status == 'قيد التنفيذ' %} bg-warning text-dark
+                    {% elif status == 'مكتمل' %} bg-success
+                    {% elif status == 'معلق' %} bg-danger
+                    {% else %} bg-secondary {% endif %}">
+                    {{ status }}
+                </h4>
+                <ul class="list-group p-0 mb-3">
+                    {% for task in tasks %}
+                        <li class="list-group-item d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                            <!-- Task Details -->
+                            <div class="flex-grow-1">
+                            <p class="mb-0"><i class="bi bi-check2-circle text-primary"></i> {{ task.task_name }}</p>
+                            {% if task.start_date %}
+                                <span class="text-muted small">
+                                    🗓️ تاريخ البدء: {{ task.start_date|date:"d-m-Y" }}
+                                </span>
+                                {% if task.end_date %} 
+                                    <span class="text-muted small">
+                                        ⏳ تاريخ الانهاء: {{ task.end_date|date:"d-m-Y" }}
+                                    </span>
+                                {% endif %}
+                            {% endif %}
+                            </div>
+                            <!-- Task Actions -->
+                            <div class="text-end">
+                                <form method="POST" class="d-flex justify-content-end gap-2">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="task_id" value="{{ task.pk }}">
+                                    
+                                    <!-- ✅ Complete Task Button -->
+                                    {% if task.status == "قيد التنفيذ" or task.status == "معلق" %}
+                                    <button type="submit" name="action" value="complete" class="btn btn-success btn-sm">
+                                        <i class="bi bi-check-circle"></i> إكمال
+                                    </button>
+                                    {% endif %}
+            
+                                    <!-- ⏸️ Pause Task Button -->
+                                    {% if task.status == "قيد التنفيذ" %}
+                                    <button type="submit" name="action" value="hold" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-pause-circle"></i> تعليق
+                                    </button>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </li> 
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-warning text-center">
+        🚀 لا توجد مهام متاحة
+    </div>
+    {% endfor %}
+
+    
+
+</div>
+
+{% endblock %}

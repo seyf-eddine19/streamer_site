@@ -1,0 +1,46 @@
+{% extends 'team_dashboard/base.html' %}
+
+{% block title %} لوحة التحكم | فتح محادثة WhatsApp {% endblock %}
+
+{% block content %}
+<div class="container my-3">
+    <!-- 🔹 عنوان الصفحة -->
+    <div class="bg-dark text-white text-center p-4 rounded shadow-sm mb-4">
+        <h2 class="fw-bold"><i class="bi bi-check2-square"></i> إدارة المهام</h2>
+    </div>
+
+    <!-- ⚠️ رسائل التنبيهات -->
+    <div class="alerts-section mb-4">
+        {% if messages %}
+            <div class="alert-container my-3">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'success' %} alert-success {% elif message.tags == 'error' %} alert-danger {% endif %} shadow-sm">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- قسم فتح المحادثة على WhatsApp -->
+    <div class="whatsapp-section text-center my-5">
+        <h1>فتح المحادثة في WhatsApp</h1>
+        <p>يمكنك فتح محادثة WhatsApp الآن أو العودة إلى قائمة المهام.</p>
+
+        <!-- زر لفتح WhatsApp -->
+        <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
+            <a href="{{ whatsapp_url }}" target="_blank">
+                <button class="btn btn-success btn-lg rounded-pill shadow-sm">
+                    <i class="bi bi-whatsapp"></i> فتح المحادثة في WhatsApp
+                </button>
+            </a>
+            <a href="{{ task_list_url }}">
+                <button class="btn btn-outline-secondary btn-lg rounded-pill shadow-sm">
+                    <i class="bi bi-arrow-left-circle"></i> الرجوع إلى قائمة المهام
+                </button>
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
