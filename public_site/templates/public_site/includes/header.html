@@ -1,1 +1,52 @@
+{% load static %}
+<header class="header">
+  <nav class="nav">
+    <a href="#" class="nav_logo">
+      <img src="{% static 'public_site/img/logo.png' %}" alt="Logo">
+    </a>
 
+    <div class="nav_menu" id="nav-menu">
+      <a href="{% url 'index' %}" class="nav_link">Home</a>
+      <a href="{% url 'about' %}" class="nav_link">About</a>
+      <a href="{% url 'projects' %}" class="nav_link">Projects</a>
+      <a href="{% url 'index' %}" class="nav_link">Blogs</a>
+      <a href="{% url 'contact' %}" class="nav_link">Contact</a>
+    </div>
+
+    <div class="nav-btns">
+      <!-- <div class="lang-btn">
+        <button class="lang-toggle" onclick="toggleLangMenu()">
+          <img src="{% static 'public_site/img/en-img.png' %}" width="20" alt="Lang"> <span>English</span> ▾
+        </button>
+        <ul class="lang-menu hide" id="lang-menu">
+          <li onclick="setLang('en')"><img src="{% static 'public_site/img/en-img.png' %}" width="18"> English</li>
+          <li onclick="setLang('ar')"><img src="{% static 'public_site/img/en-img.png' %}" width="18"> العربية</li>
+        </ul>
+      </div> -->
+      
+      <div class="lang-btn">
+        <button class="lang-toggle" onclick="toggleLangMenu()">
+          <img src="{% if lang == 'ar' %}{% static 'public_site/img/en-img.png' %}{% else %}{% static 'public_site/img/en-img.png' %}{% endif %}" width="20" alt="Lang">
+          <span>{% if lang == 'ar' %}العربية{% else %}English{% endif %}</span> ▾
+        </button>
+        <ul class="lang-menu hide" id="lang-menu">
+          <li onclick="submitLangForm('en')">
+            <img src="{% static 'public_site/img/en-img.png' %}" width="18"> English
+          </li>
+          <li onclick="submitLangForm('ar')">
+            <img src="{% static 'public_site/img/en-img.png' %}" width="18"> العربية
+          </li>
+        </ul>
+        <form id="lang-form" action="{% url 'set_language' %}" method="post" style="display: none;">
+          {% csrf_token %}
+          <input type="hidden" name="language" id="language-input">
+          <input type="hidden" name="next" value="{{ request.path }}">
+        </form>
+      </div>
+    
+      <div class="nav_toggle" id="nav-toggle" onclick="toggleMenu()">
+        <i class='bx bx-menu'></i>
+      </div>
+    </div>
+  </nav>
+</header>
