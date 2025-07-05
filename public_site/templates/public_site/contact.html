@@ -1,0 +1,118 @@
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block title %}Streamer - Contact{% endblock %}
+{% block content %}
+<!--===== HERO SECTION =====-->
+<section class="section mb-4">
+  <div class="container hero-container">
+    <div class="bg-img hero-image">
+      <img src="{% static 'public_site/img/Hero-4.png' %}" alt="hero-image">
+    </div>
+
+    <div class="svg-box svg-text svg-icons-box">
+      <div class="social-icons">
+        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="#"><i class="bx bxl-youtube"></i></a>
+        <a href="#"><i class="bx bxl-tiktok"></i></a>
+      </div>
+    </div>
+
+    <div class="svg-box box-cl">
+      <svg class="c tl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
+      </svg>
+      <svg class="c bl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
+      </svg>
+      <div class="svg-text b-tr b-br">
+        <div style="position: relative;">
+          <p class="subtitle">{% if lang == 'ar' %}تواصل معنا{% else %}Contact Me{% endif %}</p>
+          <h2 class="title">{% if lang == 'ar' %}ابق على اتصال بنا{% else %}Get in Touch with Us{% endif %}</h2>
+        </div>
+        <p>
+          {% if lang == 'ar' %}
+            ندعوك للدخول إلى عالمنا الإبداعي في التصوير الفوتوغرافي. استكشف خدماتنا المصممة لرواية قصتك الخاصة من خلال صور مذهلة.
+          {% else %}
+            Step into a world of timeless photography with Damien Braun. Explore our range of photography services, each crafted to tell your unique story through captivating images.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+
+    <div class="svg-box box-br">
+      <svg class="c tr" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
+      </svg>
+      <svg class="c lb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
+      </svg>
+      <p class="svg-text svg-scroll-box b-tl">{% if lang == 'ar' %}مرر للأسفل لإرسال رسالة{% else %}SCROLL DOWN TO SEND<br>ME A MESSAGE{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+<!--===== CONTACT INFO =====-->
+<section class="section">
+  <div class="container contact">
+    <div class="contact-intro">
+      <h2>{% if lang == 'ar' %}معلومات الاتصال{% else %}Contact Information{% endif %}</h2>
+      <p>{% if lang == 'ar' %}تواصل معنا عبر الهاتف أو البريد الإلكتروني أو وسائل التواصل الاجتماعي بكل سهولة.{% else %}Feel free to reach out to us through various channels.{% endif %}</p>
+    </div>
+    <div class="contact-details">
+      <a href="tel:+11234567890">+1-123-456-7890 <span>↗</span></a>
+      <a href="mailto:info@damienbraunphotography.com">info@damienbraunphotography.com <span>↗</span></a>
+    </div>
+  </div>
+</section>
+
+{% if messages %}
+<div class="message-box">
+  {% for message in messages %}
+    <div class="alert">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+<!--===== CONTACT FORM =====-->
+<section class="section">
+  <div class="container contact">
+    <div class="contact-intro">
+      <h2>{% if lang == 'ar' %}أرسل رسالة{% else %}Send Me A Message{% endif %}</h2>
+      <p>{% if lang == 'ar' %}لديك استفسار معين؟ استخدم النموذج أدناه وسنرد عليك قريباً.{% else %}Have a specific inquiry? Use the form below and we'll get back to you promptly.{% endif %}</p>
+    </div>
+  
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-grid">
+        <div class="form-group">
+          {{ form.firstname.label_tag }} 
+          {{ form.firstname }}
+        </div>
+        <div class="form-group">
+          {{ form.lastname.label_tag }}
+          {{ form.lastname }}
+        </div>
+        <div class="form-group">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+        <div class="form-group">
+          {{ form.phone_number.label_tag }}
+          {{ form.phone_number }}
+        </div>
+        <div class="form-group full">
+          {{ form.message.label_tag }}
+          {{ form.message  }}
+        </div>
+        <div class="submit full">
+          <span>{% if lang == 'ar' %}إرسال الرسالة{% else %}SEND MESSAGE{% endif %}</span>
+          <button type="submit" class="submit-btn">↗</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!--===== TESTIMONIALS =====-->
+{% include 'public_site/components/testimonials_section.html' %}
+{% endblock %}

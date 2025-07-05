@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{% if lang == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  {% block metatags %}{% endblock metatags %}
+
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="{% static 'public_site/css/styles.css' %}">
+  {% block extra_css %}{% endblock extra_css %}
+    
+  <link rel="shortcut icon" href="{% static 'public_site/img/logo.png' %}" type="image/png">
+  <title>{% block title %}Gaming Stream{% endblock %}</title>
+</head>
+<body>
+
+  <!--===== HEADER =====-->
+  {% include 'public_site/includes/header.html' %}
+
+  <!--===== MAIN =====-->
+  <main class="main">
+    {% block content %}{% endblock content %}
+  </main>
+
+  <!--===== FOOTER =====-->
+  {% include 'public_site/includes/footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="{% static 'public_site/js/main.js' %}"></script>
+  {% block scripts %}{% endblock scripts %}
+</body>
+</html>
