@@ -1,14 +1,14 @@
 from django.contrib import admin
 from .models import (
-    SiteTextContent, TeamMember, Service, Project, ProjectCategory,
+    SiteContent, TeamMember, Service, Project, ProjectCategory,
     Game, FAQ, Testimonial, ClientLogo, ContactMessage
 )
 
-
-# @admin.register(SiteTextContent)
-class SiteTextContentAdmin(admin.ModelAdmin):
-    list_display = ('key', 'value_ar', 'value_en', 'note')
-    search_fields = ('key', 'value_ar', 'value_en')
+@admin.register(SiteContent)
+class SiteContentAdmin(admin.ModelAdmin):
+    list_display = ('key', 'content_ar', 'content_en')
+    search_fields = ('key', 'content_ar', 'content_en')
+    list_filter = ('type', 'section')
     list_per_page = 20
 
 
