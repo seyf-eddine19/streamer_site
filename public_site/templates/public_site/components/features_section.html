@@ -1,22 +1,9 @@
-{% load static %}
+{% load static custom_filters %}
 {% if services %}
 <section class="section features">
   <div class="container">
-    <h2 class="title-2">
-      {% if lang == "ar" %}
-        تعرف على أهم <span class="highlight">مميزاتنا</span>
-      {% else %}
-        CHECK OUT OUR MOST <br>IMPORTANT <span class="highlight">FEATURES</span>
-      {% endif %}
-    </h2>
-    <p class="subtitle-2">
-      {% if lang == "ar" %}
-        تعرف على أبرز المزايا التي نقدمها لمجتمعنا ومتابعينا!
-      {% else %}
-        Offer sneak peeks and previews of upcoming games, including trailers, screenshots, and information about release.
-      {% endif %}
-    </p>
-    
+    <h2 class="title-2">{{ site_content.services|get_text:'services_title'|safe }}</h2>
+    <p class="subtitle-2">{{ site_content.services|get_text:'services_subtitle'|safe }}</p>
     <div class="features-grid">
       {% for service in services %}
       <div class="feature-card">

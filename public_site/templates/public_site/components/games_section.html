@@ -1,20 +1,8 @@
-{% load static %}
+{% load static custom_filters %}
 {% if games %}
 <section class="section games">
-  <h2 class="title-2">
-    {% if lang == "ar" %}
-      اختر <br><span class="highlight">لعبتك المفضلة</span>
-    {% else %}
-      CHOOSE YOUR <br><span class="highlight">FAVORITE</span> GAMES
-    {% endif %}
-  </h2>
-  <p class="subtitle-2">
-    {% if lang == "ar" %}
-      استعرض لمحات وعروض لأحدث الألعاب، تتضمن لقطات شاشة ومعلومات الإطلاق.
-    {% else %}
-      Offer sneak peeks and previews of upcoming games, including trailers, screenshots, and information about release.
-    {% endif %}
-  </p>
+  <h2 class="title-2">{{ site_content.games|get_text:'games_title'|safe }}</h2>
+  <p class="subtitle-2">{{ site_content.games|get_text:'games_subtitle'|safe }}</p>
 
   <div class="swiper-container">
     <div class="swiper gameSwiper">
@@ -27,25 +15,6 @@
           </a>
         </div>
         {% endfor %}
-
-        {% if games %}
-        {% for game in games %}
-        <div class="swiper-slide"  data-name="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
-          <a href="{{ game.url|default:'#' }}">
-            <img src="{% if game.image %}{{ game.image.url }}{% else %}{% static 'public_site/img/default-game.png' %}{% endif %}" 
-                 alt="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
-          </a>
-        </div>
-        {% endfor %}
-        {% for game in games %}
-        <div class="swiper-slide"  data-name="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
-          <a href="{{ game.url|default:'#' }}">
-            <img src="{% if game.image %}{{ game.image.url }}{% else %}{% static 'public_site/img/default-game.png' %}{% endif %}" 
-                 alt="{% if lang == 'ar' %}{{ game.name_ar }}{% else %}{{ game.name_en }}{% endif %}">
-          </a>
-        </div>
-        {% endfor %}
-        {% endif %}
       </div>
     </div>
 

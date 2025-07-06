@@ -1,10 +1,10 @@
-{% load static %}
+{% load static custom_filters %}
 {% if testimonials %}
 <section class="section testimonials">
   <div class="title-container">
     <div>
-      <h4 class="subtitle">{% if lang == 'ar' %} آراء العملاء {% else %}Testimonials{% endif %}</h4>
-      <h2 class="title">{% if lang == 'ar' %} ماذا يقول عملاؤنا؟ {% else %}What Our Clients Say{% endif %}</h2>
+      <h4 class="subtitle">{{ site_content.testimonials|get_text:'testimonials_subtitle'|safe }}</h4>
+      <h2 class="title">{{ site_content.testimonials|get_text:'testimonials_title'|safe }}</h2>
     </div>
   </div>
 

@@ -1,16 +1,11 @@
-{% load static %}
+{% load static custom_filters %}
 {% if projects %}
 <section class="section projects">
   <div class="title-container">
     <div>
-      <h4 class="subtitle">
-        {% if lang == "ar" %}المشاريع{% else %}Projects{% endif %}
-      </h4>
-      <h2 class="title">
-        {% if lang == "ar" %}تصفح أعمالنا.{% else %}Explore Our Work.{% endif %}
-      </h2>
+      <h4 class="subtitle">{{ site_content.projects|get_text:'projects_subtitle'|safe }}</h4>
+      <h2 class="title">{{ site_content.projects|get_text:'projects_title'|safe }}</h2>
     </div>
-  
     <div class="title-btns">
       <div class="swiper-buttons project-buttons">
         <button class="swiper-button-prev project-button-prev"></button>
@@ -27,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="project-swiper">
+  <div class="project-swiper container">
     <div class="swiper projectSwiper">
       <div class="swiper-wrapper">
         {% for project in projects %}

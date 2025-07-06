@@ -1,9 +1,10 @@
+{% load custom_filters %}
 {% if faqs %}
 <section class="section faq">
   <div class="title-container">
     <div>
-      <h4 class="subtitle">{% if lang == 'ar' %}الأسئلة الشائعة{% else %}FAQ's{% endif %}</h4>
-      <h2 class="title">{% if lang == 'ar' %}الأسئلة المتكررة{% else %}Frequently Asked Questions{% endif %}</h2>
+      <h4 class="subtitle">{{ site_content.faq|get_text:'faq_subtitle'|safe }}</h4>
+      <h2 class="title">{{ site_content.faq|get_text:'faq_title'|safe }}</h2>
     </div>
   </div>
 
