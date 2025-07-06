@@ -1,62 +1,41 @@
 {% extends "public_site/base.html" %}
-{% load static %}
+{% load static custom_filters %}
 
 {% block title %}Streamer - Projects{% endblock %}
 {% block content %}
+
 <!--===== HERO SECTION =====-->
 <section class="section mb-4">
   <div class="container hero-container">
     <div class="bg-img hero-image">
       <img src="{% static 'public_site/img/Hero-4.png' %}" alt="hero-image">
+      <!-- <img src="{% static site_content.projects|get_text:'projects_hero_background' %}" alt="hero-image"> -->
     </div>
+
     <div class="svg-box box-tl">
-      <svg class="c rt" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
-      <svg class="c bl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c rt" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+      <svg class="c bl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+
       <div class="svg-text b-br">
         <div style="position: relative;">
-          <p class="subtitle">
-            {% if lang == 'ar' %}المشاريع{% else %}Projects{% endif %}
-          </p>
-          <h2 class="title">
-            {% if lang == 'ar' %}الجمال البصري بالبكسل{% else %}Visual Poetry in Pixels{% endif %}
-          </h2>
+          <p class="subtitle">{{ site_content.projects|get_text:'projects_subtitle' }}</p>
+          <h2 class="title">{{ site_content.projects|get_text:'projects_title' }}</h2>
         </div>
-        <p>
-          {% if lang == 'ar' %}
-            انطلق في رحلة بصرية تجسد جوهر عدستي. كل صورة في هذا المعرض هي حكاية، لحظة مجمدة، ودليل على الشغف والفن الممزوج في كل إطار. استكشف تنوع القصص التي سعدت بالتقاطها وشاهد العالم من خلال عيني.
-          {% else %}
-            Step into a visual journey that encapsulates the essence of my lens. Each photograph in this portfolio 
-            is a narrative, a frozen moment in time, and a testament to the artistry and passion poured into every 
-            frame. Explore the diverse tapestry of stories I've had the privilege to capture and witness the world 
-            through my lens.
-          {% endif %}
-        </p>
+        <p>{{ site_content.projects|get_text:'projects_hero_description' }}</p>
       </div>
     </div>
 
     <div class="svg-box box-bl svg-text b-tr">
-      <svg class="c tl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
-      <svg class="c rb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c tl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+      <svg class="c rb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
       <div class="circle"><span class="star">✦</span></div>
     </div>
 
     <div class="svg-box box-br">
-      <svg class="c tr" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
-      <svg class="c lb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c tr" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+      <svg class="c lb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
       <p class="svg-text svg-scroll-box b-tl">
-        {% if lang == 'ar' %}مرر للأسفل لرؤية الأعمال{% else %}SCROLL DOWN TO SEE<br>THE WORKS{% endif %}
+        {{ site_content.projects|get_text:'projects_scroll_hint' }}
       </p>
     </div>
   </div>
@@ -65,16 +44,7 @@
 <!--===== CLIENTS SECTION =====-->
 {% if client_logos %}
 <section class="section clients">
-  <div>
-    <h4 class="subtitle-2">
-      {% if lang == 'ar' %}
-        بعض العملاء الذين عملنا معهم
-      {% else %}
-        BRANDS I HAVE WORKED WITH
-      {% endif %}
-    </h4>
-  </div>
-
+  <div><h4 class="subtitle-2">{{ site_content.clients|get_text:'clients_projects_subtitle'|safe }}</h4></div>
   <!-- Swiper Container -->
   {% include 'public_site/components/client_swiper.html' %}
 </section>
@@ -101,7 +71,7 @@
     </div>
   </div>
 
-  <div class="project-swiper">
+  <div class="project-swiper container">
     <div class="swiper projectSwiper">
       <div class="swiper-wrapper">
         {% for project in projects %}

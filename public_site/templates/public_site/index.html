@@ -1,129 +1,83 @@
 {% extends "public_site/base.html" %}
-{% load static %}
+{% load static custom_filters %}
 
 {% block title %}Streamer - Home{% endblock %}
+
 {% block content %}
 <!--===== HERO SECTION =====-->
 <section class="section hero">
   <div class="bg-img hero-image">
-    <img src="{% static 'public_site/img/hero-bg-1.png' %}" alt="hero-image">
+    <img src="{% static site_content.hero|get_text:'hero_background' %}" alt="hero-image">
   </div>
   <div class="container">
     <div class="hero-content">
-      <h1 class="title">
-        {% if lang == 'ar' %}
-          ليست مجرد بث – إنها تجربة. انضم إلى الرحلة!
-        {% else %}
-          Not just a stream – it’s an experience. Join the journey!
-        {% endif %}
-      </h1>
-
-      <p>
-        {% if lang == 'ar' %}
-          ممارسة الألعاب الإلكترونية، سواء عبر الأجهزة المنزلية أو الحواسيب أو الهواتف المحمولة أو أي وسيلة أخرى. الألعاب هواية متكاملة تُمارس بشغف ومتعة.
-        {% else %}
-          Playing electronic games, whether through consoles, computers, mobile phones or another medium altogether. Gaming is a nuanced term that suggests regular gameplay, possibly as a hobby.
-        {% endif %}
-      </p>
-
-      <button class="cta button">
-        {% if lang == 'ar' %}ابدأ الآن{% else %}Get Started Now{% endif %}
-      </button>
+      <h1 class="title">{{ site_content.hero|get_text:'hero_main_title' }}</h1>
+      <p>{{ site_content.hero|get_text:'hero_description' }}</p>
+      <button class="cta button">{{ site_content.hero|get_text:'hero_cta_button' }}</button>
 
       <div class="stats">
         <div>
-          <strong>300+</strong>
-          <span>{% if lang == 'ar' %}أسلوب فريد{% else %}Unique Style{% endif %}</span>
+          <strong>{{ site_content.hero|get_text:'hero_stat_1'|default:"300+" }}</strong>
+          <span>Unique Style</span>
         </div>
         <div>
-          <strong class="highlight">200+ </strong>
-          <span>{% if lang == 'ar' %}مشروع مكتمل{% else %}Project Finished{% endif %}</span>
+          <strong class="highlight">{{ site_content.hero|get_text:'hero_stat_2'|default:"200+" }}</strong>
+          <span>Project Finished</span>
         </div>
         <div>
-          <strong>500+</strong>
-          <span>{% if lang == 'ar' %}عميل سعيد{% else %}Happy Customer{% endif %}</span>
+          <strong>{{ site_content.hero|get_text:'hero_stat_3'|default:"500+" }}</strong>
+          <span>Happy Customer</span>
         </div>
       </div>
 
       <div class="marquee">
-        <!--===== MARQUEE SWIPER =====-->
         <div class="swiper marquee-swiper marquee-content">
           <div class="swiper-wrapper">
-            {% if lang == 'ar' %}
-              <span class="swiper-slide">عالم الألعاب</span>
-              <span class="swiper-slide">أكشن وتشويق</span>
-              <span class="swiper-slide">مغامرات لا تُنسى</span>
-              <span class="swiper-slide">مجموعة ألعاب مذهلة</span>
-              <span class="swiper-slide">عالم الألعاب</span>
-              <span class="swiper-slide">أكشن وتشويق</span>
-              <span class="swiper-slide">مغامرات لا تُنسى</span>
-              <span class="swiper-slide">مجموعة ألعاب مذهلة</span>
-            {% else %}
-              <span class="swiper-slide">GAMING SPANING</span>
-              <span class="swiper-slide">ACTION - PACKED</span>
-              <span class="swiper-slide">MIND - BENDING</span>
-              <span class="swiper-slide">COLLECTION OF GAMES</span>
-              <span class="swiper-slide">GAMING SPANING</span>
-              <span class="swiper-slide">ACTION - PACKED</span>
-              <span class="swiper-slide">MIND - BENDING</span>
-              <span class="swiper-slide">COLLECTION OF GAMES</span>
-            {% endif %}
+            {% for item in marquee_items %}
+              <span class="swiper-slide">{{ item }}</span>
+            {% endfor %}
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- ===== GAMES SECTION ===== -->
-{% include 'public_site/components/games_section.html' %}
+
+<!--===== GAMES SECTION =====-->
+{% include "public_site/components/games_section.html" %}
+
 <!--===== ABOUT SECTION =====-->
 <section class="section about">
   <div class="title-container">
     <div>
-      <h4 class="subtitle">
-        {% if lang == 'ar' %}من نحن{% else %}About{% endif %}
-      </h4>
-      <h2 class="title">
-        {% if lang == 'ar' %}تعرّف علينا الآن{% else %}Get to know us now{% endif %}
-      </h2>
+      <h4 class="subtitle">{{ site_content.about|get_text:'about_subtitle' }}</h4>
+      <h2 class="title">{{ site_content.about|get_text:'about_main_title' }}</h2>
     </div>
     <div>
-      <a href="#" class="button">
-        {% if lang == 'ar' %}اعرف المزيد{% else %}Know More{% endif %}
-        <i class='bx bx-right-arrow-alt'></i>
+      <a href="{% url 'about' %}" class="button">
+        {% if lang == "ar" %}
+          اعرف المزيد <i class='bx bx-left-arrow-alt'></i>
+        {% else %}
+          Know More <i class='bx bx-right-arrow-alt'></i>
+        {% endif %}
       </a>
     </div>
   </div>
 
   <div class="container about-container">
     <div class="about-image">
-      <img src="{% static 'public_site/img/about-image.png' %}" alt="About Image" />
+      <img src="{% static site_content.about|get_text:'about_image' %}" alt="About Image">
     </div>
 
     <div class="about-info">
       <div class="intro">
         <div class="about-title">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 0L22.7577 17.1716L39.5 20L22.7577 22.8284L20 40L17.2423 22.8284L0.5 20L17.2423 17.1716L20 0Z" fill="#603E82"/>
+          <svg width="40" height="40" viewBox="0 0 40 40">
+            <path d="M20 0L22.75 17.17L39.5 20L22.75 22.83L20 40L17.24 22.83L0.5 20L17.24 17.17L20 0Z" fill="#603E82"/>
           </svg>
           <h3>{% if lang == 'ar' %}مقدمة{% else %}Introduction{% endif %}</h3>
         </div>
-        <p>
-          {% if lang == 'ar' %}
-            مرحبًا بك في المركز الرسمي لكل ما يخص البث المباشر! هذا الموقع أكثر من مجرد صفحة — 
-            إنه نافذتك إلى عالم الألعاب الحية، واللحظات العفوية، والمجتمع المتنامي الذي يشاركك نفس الشغف بالألعاب والأجواء الممتعة.
-            ستجد هنا أبرز اللحظات من المباريات الملحمية، وقصص من خلف الكواليس، وآخر التحديثات مباشرة من البث. 
-            سواء كنت هنا من أجل روح التنافس، أو الضحك، أو فقط للاسترخاء — هذا هو مكانك أيضًا. 
-            استمتع، وابق على تواصل، ولنواصل بناء شيء رائع — بثًا بعد بث.
-          {% else %}
-            Welcome to the official hub of all things streaming! This site is more than just a page — 
-            it’s a window into the world of live gameplay, spontaneous moments, and an ever-growing 
-            community that shares the same passion for gaming and good vibes. Here, you’ll find highlights 
-            from epic matches, behind-the-scenes stories, and updates straight from the stream. Whether
-            you're here for the thrill of competition, the laughs, or just to hang out, this is your space
-            too. Dive in, stay connected, and let's keep building something awesome — one stream at a time.
-          {% endif %}
-        </p>
+        <p>{{ site_content.about|get_text:'about_intro_p' }}</p>
       </div>
 
       <div class="contact">
@@ -138,23 +92,21 @@
         <div class="info-wrapper">
           <div class="info-item">
             <span class="info-label">{% if lang == 'ar' %}البريد الإلكتروني{% else %}Email{% endif %}</span>
-            <p class="info-value">damienbraun@gmail.com</p>
+            <a class="info-value" href="mailto:{{ site_content.about|get_text:'about_contact_email' }}">{{ site_content.about|get_text:'about_contact_email' }}<span>↗</span></a>
           </div>
           <div class="info-item">
             <span class="info-label">{% if lang == 'ar' %}رقم الهاتف{% else %}Phone Number{% endif %}</span>
-            <p class="info-value">+00 000000000</p>
+            <a class="info-value" href="tel:{{ site_content.about|get_text:'about_contact_phone' }}">{{ site_content.about|get_text:'about_contact_phone' }}<span>↗</span></a>
           </div>
         </div>
 
         <div class="social-wrapper">
           <div class="social-icons">
-            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-            <a href="#"><i class="bx bxl-youtube"></i></a>
-            <a href="#"><i class="bx bxl-tiktok"></i></a>
+            <a href="{{ site_content.about|get_text:'social_facebook' }}"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="{{ site_content.about|get_text:'social_youtube' }}"><i class="bx bxl-youtube"></i></a>
+            <a href="{{ site_content.about|get_text:'social_tiktok' }}"><i class="bx bxl-tiktok"></i></a>
           </div>
-          <button class="button">
-            {% if lang == 'ar' %}لنبدأ العمل{% else %}Let's Work{% endif %}
-          </button>
+          <a href="{% url 'about' %}" class="button">{{ site_content.about|get_text:'about_cta_button' }}</a>
         </div>
       </div>
     </div>
@@ -162,54 +114,38 @@
 </section>
 
 <!--===== FEATURES SECTION =====-->
-{% include 'public_site/components/features_section.html' %}
+{% include "public_site/components/features_section.html" %}
 
 <!--===== VIDEO SECTION =====-->
 <section class="section video-preview">
   <div class="container video-container">
-    <h2 class="title-1">Level up your world — where<br><span class="gradient-text">streaming meets technology</span></h2>
+    <h2 class="title-1">{{ site_content.video|get_text:'video_title' }}</h2>
     <div class="video-box">
-      <img src="{% static 'public_site/img/video-thumbnail.png' %}" alt="Video Preview" />
+      <img src="{% static site_content.video|get_text:'video_thumbnail' %}" alt="Video Preview">
       <div class="play-button"><i class="bx bx-play"></i></div>
     </div>
   </div>
 </section>
 
 <!--===== PROJECTS SECTION =====-->
-{% include 'public_site/components/projects_section.html' %}
+{% include "public_site/components/projects_section.html" %}
 
 <!--===== FAQ SECTION =====-->
-{% include 'public_site/components/faq_section.html' %}
+{% include "public_site/components/faq_section.html" %}
 
 <!--===== TESTIMONIALS SECTION =====-->
-{% include 'public_site/components/testimonials_section.html' %}
+{% include "public_site/components/testimonials_section.html" %}
 
 <!--===== CLIENTS SECTION =====-->
 {% if client_logos %}
 <section class="section clients">
   <div>
-    <h2 class="title">
-      {% if lang == 'ar' %}
-        لقد خدمنا أكثر من <strong>150,000</strong><br> عميل... ومن بين عملائنا:
-      {% else %}
-        We have served more than <strong>150,000</strong><br> clients... and some of our clients are:
-      {% endif %}
-    </h2>
-    <h4 class="subtitle-2">
-      {% if lang == 'ar' %}
-        تشرفنا بخدمة عدد كبير من العملاء في جميع مجالات خدماتنا منذ عام 2006 ولمدة تزيد عن 14 سنة وما زلنا مستمرين.
-      {% else %}
-        We have been honored to serve a large number of clients in all areas of our services since 2006
-        and for more than 14 years and we are still continuing
-      {% endif %}
-    </h4>
+    <h2 class="title">{{ site_content.clients|get_text:'clients_title'|safe }}</h2>
+    <h4 class="subtitle-2">{{ site_content.clients|get_text:'clients_description'|safe }}</h4>
   </div>
-
-  <!-- Swiper Container -->
-  {% include 'public_site/components/client_swiper.html' %}
+  {% include "public_site/components/client_swiper.html" %}
 </section>
 {% endif %}
-
 {% endblock %}
 
 {% block scripts %}

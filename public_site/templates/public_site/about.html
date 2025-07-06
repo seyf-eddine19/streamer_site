@@ -1,5 +1,5 @@
 {% extends "public_site/base.html" %}
-{% load static %}
+{% load static custom_filters %}
 
 {% block title %}Streamer - About{% endblock %}
 {% block content %}
@@ -8,91 +8,68 @@
   <div class="container hero-container">
     <div class="bg-img hero-image">
       <img src="{% static 'public_site/img/Hero-2.png' %}" alt="hero-image">
+      <!-- <img src="{% static site_content.about|get_text:'about_hero_background' %}" alt="hero-image"> -->
     </div>
 
     <div class="svg-box box-tl">
-      <svg class="c rt" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
-      <svg class="c rb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c rt" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+      <svg class="c rb" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
       <div class="svg-text">
         <div style="position: relative;">
-          <p class="subtitle">{% if lang == 'ar' %}من نحن{% else %}ABOUT{% endif %}</p>
-          <h2 class="title">{% if lang == 'ar' %}تعرّف علينا أكثر{% else %}Get to know us well{% endif %}</h2>
+          <p class="subtitle">{{ site_content.about|get_text:'about_subtitle'|safe }}</p>
+          <h2 class="title">{{ site_content.about|get_text:'about_main_title'|safe }}</h2>
         </div>
       </div>
     </div>
 
     <div class="svg-box">
-      <svg class="c tr" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
-      <svg class="c br" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c tr" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+      <svg class="c br" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
       <div class="svg-text stats">
         <div class="stat">
-          <span>15+</span>
-          <p>{% if lang == 'ar' %}سنوات من العمل{% else %}Years in Business{% endif %}</p>
+          <span>{{ site_content.about|get_text:'about_stats_years' }}</span>
+          <p>{{ site_content.about|get_text:'about_stats_years_label' }}</p>
         </div>
         <div class="stat">
-          <span>500+</span>
-          <p>{% if lang == 'ar' %}عميل سعيد{% else %}Happy Clients{% endif %}</p>
+          <span>{{ site_content.about|get_text:'about_stats_clients' }}</span>
+          <p>{{ site_content.about|get_text:'about_stats_clients_label' }}</p>
         </div>
         <div class="stat">
-          <span>10+</span>
-          <p>{% if lang == 'ar' %}جوائز تصوير{% else %}Photography Awards{% endif %}</p>
+          <span>{{ site_content.about|get_text:'about_stats_awards' }}</span>
+          <p>{{ site_content.about|get_text:'about_stats_awards_label' }}</p>
         </div>
         <div class="stat">
-          <span>05+</span>
-          <p>{% if lang == 'ar' %}جلسات دولية{% else %}International Shoots{% endif %}</p>
+          <span>{{ site_content.about|get_text:'about_stats_international' }}</span>
+          <p>{{ site_content.about|get_text:'about_stats_international_label' }}</p>
         </div>
         <div class="stat">
-          <span>10,000+</span>
-          <p>{% if lang == 'ar' %}متابعين على المنصات{% else %}Social Media Followers{% endif %}</p>
+          <span>{{ site_content.about|get_text:'about_stats_followers' }}</span>
+          <p>{{ site_content.about|get_text:'about_stats_followers_label' }}</p>
         </div>
         <div class="stat">
-          <span>90%</span>
-          <p>{% if lang == 'ar' %}معدل رضا العملاء{% else %}Client Retention Rate{% endif %}</p>
+          <span>{{ site_content.about|get_text:'about_stats_retention' }}</span>
+          <p>{{ site_content.about|get_text:'about_stats_retention_label' }}</p>
         </div>
       </div>
     </div>
 
     <div class="svg-box" style=" display: block; position: relative; color: white; width: 50%; margin-bottom: 32%;">
-      <svg class="c" style="right: 0; width:82px; height: 100%;" viewBox="0 2 2 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 3C1 3 1 2 2 2L0 2Z" />
-      </svg>
-      <svg class="c bl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c" style="right: 0; width:82px; height: 100%;" viewBox="0 2 2 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 3C1 3 1 2 2 2L0 2Z" /></svg>
+      <svg class="c bl" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
       <div class="svg-text" style="max-width: calc(100% - 82px);"></div>
     </div>
 
     <div class="svg-box box-bl svg-text b-tr">
-      <svg class="c tl" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
-      <svg class="c rb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c tl" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+      <svg class="c rb" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
       <div class="circle"><span class="star">✦</span></div>
     </div>
 
     <div class="svg-box box-br">
-      <svg class="c tr" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
-      <svg class="c lb" viewBox="0 2 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 3C1 3 0 3 0 2L0 3Z" />
-      </svg>
+      <svg class="c tr" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
+      <svg class="c lb" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z"/></svg>
       <p class="svg-text svg-scroll-box b-tl">
-        {% if lang == 'ar' %}
-          مرر لأسفل لتكتشف رحلتنا
-        {% else %}
-          SCROLL DOWN TO SEE<br>MY JOURNEY
-        {% endif %}
+        {{ site_content.about|get_text:'about_scroll_hint'|linebreaksbr }}
       </p>
     </div>
   </div>
@@ -108,25 +85,10 @@
 {% if client_logos %}
 <section class="section clients">
   <div>
-    <h2 class="title">
-      {% if lang == 'ar' %}
-        لقد خدمنا أكثر من <strong>150,000</strong><br> عميل... ومن بين عملائنا:
-      {% else %}
-        We have served more than <strong>150,000</strong><br> clients... and some of our clients are:
-      {% endif %}
-    </h2>
-    <h4 class="subtitle-2">
-      {% if lang == 'ar' %}
-        تشرفنا بخدمة عدد كبير من العملاء في جميع مجالات خدماتنا منذ عام 2006 ولمدة تزيد عن 14 سنة وما زلنا مستمرين.
-      {% else %}
-        We have been honored to serve a large number of clients in all areas of our services since 2006
-        and for more than 14 years and we are still continuing
-      {% endif %}
-    </h4>
+    <h2 class="title">{{ site_content.clients|get_text:'clients_title'|safe }}</h2>
+    <h4 class="subtitle-2">{{ site_content.clients|get_text:'clients_description'|safe }}</h4>
   </div>
-
-  <!-- Swiper Container -->
-  {% include 'public_site/components/client_swiper.html' %}
+  {% include "public_site/components/client_swiper.html" %}
 </section>
 {% endif %}
 
