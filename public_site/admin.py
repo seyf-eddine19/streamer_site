@@ -1,16 +1,23 @@
 from django.contrib import admin
 from .models import (
-    SiteContent, TeamMember, Service, Project, ProjectCategory,
-    Game, FAQ, Testimonial, ClientLogo, ContactMessage
+    SiteContent, SiteImage, TeamMember, Service, Project, ProjectCategory,
+    BlogPost, Game, FAQ, Testimonial, ClientLogo, ContactMessage
 )
 
 @admin.register(SiteContent)
 class SiteContentAdmin(admin.ModelAdmin):
-    list_display = ('key', 'content_ar', 'content_en')
+    list_display = ('key', 'content_ar', 'content_en', 'section')
     search_fields = ('key', 'content_ar', 'content_en')
     list_filter = ('type', 'section')
-    list_per_page = 20
+    readonly_fields = ('key', 'type', 'section')
 
+
+@admin.register(SiteImage)
+class SiteImageAdmin(admin.ModelAdmin):
+    list_display = ('key', 'image', 'section')
+    search_fields = ('key',)
+    list_filter = ('section',)
+    readonly_fields = ('key', 'section')
 
 @admin.register(TeamMember)
 class TeamMemberAdmin(admin.ModelAdmin):
@@ -80,3 +87,15 @@ class ContactMessageAdmin(admin.ModelAdmin):
     readonly_fields = ('sent_at',)
     list_filter = ('sent_at',)
     list_per_page = 20
+
+
+@admin.register(BlogPost)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('title_ar', 'title_en', 'content_ar', 'content_en')
+    search_fields = ('title_ar', 'title_en')
+
+
+# Admin Site Customization
+admin.site.site_header = "لوحة التحكم"
+admin.site.site_title = "إدارة الموقع"
+admin.site.index_title = "مرحبًا بك في لوحة الإدارة"

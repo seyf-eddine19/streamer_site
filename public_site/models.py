@@ -14,6 +14,8 @@ class SiteContent(models.Model):
         ('projects', _('Projects')),
         ('faq', _('FAQ')),
         ('testimonials', _('Testimonials')),
+        ('team', _('Team')),
+        ('blog', _('Blog')),
         ('clients', _('Clients')),
         ('contact', _('Contact')),
         ('footer', _('Footer')),
@@ -24,7 +26,6 @@ class SiteContent(models.Model):
         ('subtitle', _('Subtitle')),
         ('paragraph', _('Paragraph')),
         ('button', _('Button')),
-        ('image', _('Image')),
         ('video', _('Video')),
         ('link', _('Link')),
     ]
@@ -43,20 +44,45 @@ class SiteContent(models.Model):
     content_ar = models.TextField(blank=True, verbose_name=_("Content (Arabic)"))
     content_en = models.TextField(blank=True, verbose_name=_("Content (English)"))
 
-    def get_pages_list(self):
-        return self.pages.split(',') if self.pages else []
+    # def get_pages_list(self):
+    #     return self.pages.split(',') if self.pages else []
 
-    def get_pages_display(self):
-        return [dict(self.PAGE_CHOICES).get(p, p) for p in self.get_pages_list()]
+    # def get_pages_display(self):
+    #     return [dict(self.PAGE_CHOICES).get(p, p) for p in self.get_pages_list()]
 
     class Meta:
-        verbose_name = _("Site Content Item")
+        verbose_name = _("Site Content")
         verbose_name_plural = _("Site Content")
         ordering = ['key']
         unique_together = ('section', 'key')
 
     def __str__(self):
         return f"{self.section} - {self.type} - {self.key}"
+
+
+class SiteImage(models.Model):
+    SECTION_CHOICES = [
+        ('header', _('Header')),
+        ('home', _('home')),
+        ('about', _('About')),
+        ('projects', _('Projects')),
+        ('blog', _('Blog')),
+        ('contact', _('Contact')),
+        ('footer', _('Footer')),
+    ]
+
+    section = models.CharField(max_length=50, choices=SECTION_CHOICES, verbose_name=_("Section"))
+    key = models.CharField(max_length=100, unique=True, verbose_name=_("Unique Key"))
+    image = models.ImageField(upload_to='public_site/site_images/', verbose_name=_("Image"))
+
+    class Meta:
+        verbose_name = _("Site Image")
+        verbose_name_plural = _("Site Images")
+        ordering = ['key']
+        unique_together = ('section', 'key')
+
+    def __str__(self):
+        return f"{self.section} - {self.key}"
 
 
 class TeamMember(models.Model):
@@ -198,3 +224,15 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"Message from {self.firstname} {self.lastname}"
+
+
+class BlogPost(models.Model):
+    title_en = models.CharField(_("Title (EN)"), max_length=200)
+    title_ar = models.CharField(_("Title (AR)"), max_length=200)
+    content_en = models.TextField(_("Content (EN)"))
+    content_ar = models.TextField(_("Content (AR)"))
+    image = models.ImageField(upload_to='blog/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title_en
