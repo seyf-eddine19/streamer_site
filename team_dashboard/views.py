@@ -373,8 +373,6 @@ def send_whatsapp(request, phone_number, message):
     return redirect(whatsapp_url)
 
 
-from urllib.parse import quote
-
 def send_whatsapp(request, phone_number, message):
     """
     عرض صفحة تحتوي على أزرار لفتح WhatsApp أو العودة إلى قائمة المهام.
@@ -460,6 +458,7 @@ class TaskListView(ListView):
                     messages.warning(request, f"بعض المهام معلقة، تم تعليق المشروع {project}!")
 
         return redirect("task_list")
+        
     def post(self, request, *args, **kwargs):
         task_id = request.POST.get("task_id")
         action = request.POST.get("action")
@@ -485,12 +484,26 @@ class TaskListView(ListView):
                         project.save()
                     
                     # 🔹 إرسال إشعار عبر واتساب إذا كانت هناك مهمة جديدة
+                    # next_task = project.tasks.filter(status="قيد التنفيذ").order_by('id').first()
+                    # if next_task and next_task.assigned_to:
+                    #     phone_number = next_task.assigned_to.profile.whatsapp_number
+                    #     message_body = f"لديك مهمة جديدة: {next_task.task_name} في مشروع {next_task.project.title}."
+                    #     return redirect(reverse('send_whatsapp', args=[phone_number, message_body]))
+                    
+                    
+                    # 🔹 إرسال إشعار عبر واتساب إذا كانت هناك مهمة جديدة
                     next_task = project.tasks.filter(status="قيد التنفيذ").order_by('id').first()
                     if next_task and next_task.assigned_to:
-                        phone_number = next_task.assigned_to.profile.whatsapp_number
-                        message_body = f"لديك مهمة جديدة: {next_task.task_name} في مشروع {next_task.project.title}."
-                        return redirect(reverse('send_whatsapp', args=[phone_number, message_body]))
-    
+                        profile = getattr(next_task.assigned_to, "profile", None)
+                        if profile and profile.whatsapp_number:
+                            phone_number = profile.whatsapp_number
+                            message_body = f"لديك مهمة جديدة: {next_task.task_name} في مشروع {next_task.project.title}."
+                            return redirect(reverse('send_whatsapp', args=[phone_number, message_body]))
+                        else:
+                            messages.error(request, "لا يمكن إرسال الإشعار: لا يوجد رقم واتساب للمستخدم المكلّف.")
+                    else:
+                        messages.error(request, "لا توجد مهمة حالياً قيد التنفيذ أو لم يتم تعيين مستخدم لها.")
+                    
                 elif action == "hold" and task.status == "قيد التنفيذ":
                     task.status = "معلق"
                     project.status = "معلق"
