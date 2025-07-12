@@ -1,1 +1,126 @@
-blog
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title_en }} - Blog{% endblock %}
+
+{% block content %}
+<section class="section mb-4">
+  <div class="container">
+    <h2 class="title-2">
+      {% if lang == 'ar' %}
+        {{ post.title_ar }}
+      {% else %}
+        {{ post.title_en }}
+      {% endif %}
+    </h2>
+
+    <p style="text-align: center;">{{ post.created_at|date:"F d, Y" }}</p>
+
+    {% if post.image %}
+      <div class="post-image"><img src="{{ post.image.url }}" alt="Post Image"></div>
+    {% endif %}
+
+    <div class="post-content">
+      {% if lang == 'ar' %}
+        {{ post.content_ar|safe }}
+      {% else %}
+        {{ post.content_en|safe }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% if posts %}
+<section class="section blogs">
+  <div class="title-container">
+    <div>
+      <h4 class="subtitle">
+        {% if lang == 'ar' %} تابع جديدنا {% else %} Stay Updated {% endif %}
+      </h4>
+      <h2 class="title">
+        {% if lang == 'ar' %} آخر المقالات {% else %} Latest Articles {% endif %}
+      </h2>
+    </div>
+    <div class="title-btns">
+      <div class="swiper-buttons blog-buttons">
+        <button class="swiper-button-prev blog-button-prev"></button>
+        <button class="swiper-button-next blog-button-next"></button>
+      </div>
+      <div>
+        <a href="{% url 'blog_list' %}" class="button">
+          {% if lang == 'ar' %}
+            عرض كل المقالات <i class='bx bx-left-arrow-alt'></i>
+          {% else %}
+            View All Articles <i class='bx bx-right-arrow-alt'></i>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="blog-swiper container">
+    <div class="swiper blogSwiper">
+      <div class="swiper-wrapper">
+        {% for post in posts %}
+        <div class="swiper-slide blog-card">
+          <div class="blog-image">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title_en }}">
+            {% endif %}
+          </div>
+          <div class="blog-content">
+            <div class="blog-card-head">
+              <p class="blog-title">
+                {% if lang == 'ar' %}
+                  {{ post.title_ar }}
+                {% else %}
+                  {{ post.title_en }}
+                {% endif %}
+              </p>
+              <p class="blog-date">{{ post.created_at|date:"F Y" }}</p>
+            </div>
+            <p class="blog-text">
+              {% if lang == 'ar' %}
+                {{ post.content_ar|truncatechars:120 }}
+              {% else %}
+                {{ post.content_en|truncatechars:120 }}
+              {% endif %}
+            </p>
+            <a href="{% url 'blog_detail' post.id %}" class="blog-link">
+              {% if lang == 'ar' %}عرض المزيد{% else %}View More{% endif %}
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Swipers: blogs
+document.querySelectorAll('.blogSwiper').forEach((el, index) => {
+    new Swiper(el, {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 30,
+      centeredSlides: false,
+      navigation: {
+        nextEl: document.querySelectorAll(".blog-button-next")[index],
+        prevEl: document.querySelectorAll(".blog-button-prev")[index],
+      },
+      breakpoints: {
+        0: { slidesPerView: 1, slidesPerGroup: 1 },
+        768: { slidesPerView: 2, slidesPerGroup: 2 },
+        1024: { slidesPerView: 3, slidesPerGroup: 3 },
+      }
+    });
+});
+</script>
+{% endblock scripts %}

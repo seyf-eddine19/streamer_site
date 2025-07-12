@@ -1,0 +1,77 @@
+{% extends "public_site/base.html" %}
+{% load static custom_filters %}
+
+{% block title %}Blog - Streamer{% endblock %}
+
+{% block content %}
+<!--===== HERO SECTION =====-->
+<section class="section mb-4">
+  <div class="container hero-container">
+    <div class="bg-img hero-image">
+      <img src="{{ site_images.hero_bg_5|default:'' }}" alt="Hero Background">
+    </div>
+
+    <div class="svg-box svg-text svg-icons-box">
+      <div class="social-icons">
+        <a href="{{ about_links|get_by_key:'social_facebook'|get_content_by_lang:lang }}"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="{{ about_links|get_by_key:'social_youtube'|get_content_by_lang:lang }}"><i class="bx bxl-youtube"></i></a>
+        <a href="{{ about_links|get_by_key:'social_tiktok'|get_content_by_lang:lang }}"><i class="bx bxl-tiktok"></i></a>      
+      </div>
+    </div>
+
+    <div class="svg-box box-cl">
+      <svg class="c tl" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z" /></svg>
+      <svg class="c bl" viewBox="0 2 1 1"><path d="M1 3C1 3 0 3 0 2L0 3Z" /></svg>
+
+      <div class="svg-text b-tr b-br">
+        <div style="position: relative;">
+          <p class="subtitle">{{ site_content.blog|get_text:'blog_subtitle' }}</p>
+          <h2 class="title">{{ site_content.blog|get_text:'blog_title' }}</h2>
+        </div>
+        <p>{{ site_content.blog|get_text:'blog_text' }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section blog-grid">
+  <div class="container">
+    <h2 class="title">{% if lang == 'ar' %}آخر المقالات{% else %}Latest Articles{% endif %}</h2>
+    
+    <div class="blog-cards">
+      {% for post in posts %}
+      <div class="blog-card">
+        <div class="blog-image">
+          {% if post.image %}
+          <img src="{{ post.image.url }}" alt="{{ post.title_en }}">
+          {% endif %}
+        </div>
+        <div class="blog-content">
+          <div class="blog-card-head">
+            <p class="blog-title">
+              {% if lang == 'ar' %}
+                {{ post.title_ar }}
+              {% else %}
+                {{ post.title_en }}
+              {% endif %}
+            </p>
+            <p class="blog-date">{{ post.created_at|date:"F Y" }}</p>
+          </div>
+          <p class="blog-text">
+            {% if lang == 'ar' %}
+              {{ post.content_ar|truncatechars:120 }}
+            {% else %}
+              {{ post.content_en|truncatechars:120 }}
+            {% endif %}
+          </p>
+          <a href="{% url 'blog_detail' post.id %}" class="blog-link">
+            {% if lang == 'ar' %}عرض المزيد{% else %}VIEW MORE{% endif %}
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
