@@ -8,14 +8,14 @@
 <section class="section mb-4">
   <div class="container hero-container">
     <div class="bg-img hero-image">
-      <img src="{% static 'public_site/img/Hero-4.png' %}" alt="hero-image">
+      <img src="{{ site_images.hero_bg_4|default:'' }}" alt="Hero Background">
     </div>
 
     <div class="svg-box svg-text svg-icons-box">
       <div class="social-icons">
-        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-        <a href="#"><i class="bx bxl-youtube"></i></a>
-        <a href="#"><i class="bx bxl-tiktok"></i></a>
+        <a href="{{ about_links|get_by_key:'social_facebook'|get_content_by_lang:lang }}"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="{{ about_links|get_by_key:'social_youtube'|get_content_by_lang:lang }}"><i class="bx bxl-youtube"></i></a>
+        <a href="{{ about_links|get_by_key:'social_tiktok'|get_content_by_lang:lang }}"><i class="bx bxl-tiktok"></i></a>      
       </div>
     </div>
 

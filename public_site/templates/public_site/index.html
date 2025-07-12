@@ -7,38 +7,48 @@
 <!--===== HERO SECTION =====-->
 <section class="section hero">
   <div class="bg-img hero-image">
-    <img src="{% static site_content.hero|get_text:'hero_background' %}" alt="hero-image">
+    <img src="{{ site_images.hero_bg_1|default:'' }}" alt="Hero Background">
   </div>
   <div class="container">
     <div class="hero-content">
       <h1 class="title">{{ site_content.hero|get_text:'hero_main_title' }}</h1>
       <p>{{ site_content.hero|get_text:'hero_description' }}</p>
-      <button class="cta button">{{ site_content.hero|get_text:'hero_cta_button' }}</button>
+      <a class="cta button" href="{% url 'contact' %}">{{ site_content.hero|get_text:'hero_cta_button' }}</a>
 
       <div class="stats">
         <div>
-          <strong>{{ site_content.hero|get_text:'hero_stat_1'|default:"300+" }}</strong>
-          <span>Unique Style</span>
+          <strong>{{ site_content.hero|get_text:'hero_stat_value_1'|default:"300+" }}</strong>
+          <span></span>
+          <span>{{ site_content.hero|get_text:'hero_stat_label_3'|default:"Unique Style" }}</span>
         </div>
         <div>
-          <strong class="highlight">{{ site_content.hero|get_text:'hero_stat_2'|default:"200+" }}</strong>
-          <span>Project Finished</span>
+          <strong class="highlight">{{ site_content.hero|get_text:'hero_stat_value_2'|default:"200+" }}</strong>
+          <span></span>
+          <span>{{ site_content.hero|get_text:'hero_stat_label_3'|default:"Project Finished" }}</span>
         </div>
         <div>
-          <strong>{{ site_content.hero|get_text:'hero_stat_3'|default:"500+" }}</strong>
-          <span>Happy Customer</span>
+          <strong>{{ site_content.hero|get_text:'hero_stat_value_3'|default:"500+" }}</strong>
+          <span>{{ site_content.hero|get_text:'hero_stat_label_3'|default:"Happy Customer" }}</span>
         </div>
       </div>
 
-      <div class="marquee">
-        <div class="swiper marquee-swiper marquee-content">
+      {% if hero_taglines %}
+      <div class="tagline">
+        <div class="swiper tagline-swiper tagline-content">
           <div class="swiper-wrapper">
-            {% for item in marquee_items %}
-              <span class="swiper-slide">{{ item }}</span>
+            {% for tagline in hero_taglines %}
+              <span class="swiper-slide">
+                {% if lang == 'ar' %}
+                  {{ tagline.content_ar }}
+                {% else %}
+                  {{ tagline.content_en }}
+                {% endif %}
+              </span>
             {% endfor %}
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -66,7 +76,7 @@
 
   <div class="container about-container">
     <div class="about-image">
-      <img src="{% static site_content.about|get_text:'about_image' %}" alt="About Image">
+      <img src="{{ site_images.about_img|default:'' }}" alt="About Image">
     </div>
 
     <div class="about-info">
@@ -117,12 +127,14 @@
 {% include "public_site/components/features_section.html" %}
 
 <!--===== VIDEO SECTION =====-->
-<section class="section video-preview">
+<section class="section">
+  <h2 class="video-title">{{ site_content.about|get_text:'video_title'|safe }}</h2>
   <div class="container video-container">
-    <h2 class="title-1">{{ site_content.video|get_text:'video_title' }}</h2>
-    <div class="video-box">
-      <img src="{% static site_content.video|get_text:'video_thumbnail' %}" alt="Video Preview">
-      <div class="play-button"><i class="bx bx-play"></i></div>
+
+    <div class="video-wrapper">
+      <div class="video-iframe" id="videoBox">
+        {{ site_content.about|get_text:'video_youtube_iframe'|safe }}
+      </div>
     </div>
   </div>
 </section>

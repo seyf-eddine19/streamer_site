@@ -1,0 +1,16 @@
+{% extends "public_site/base.html" %}
+{% load custom_filters %}
+
+{% block title %}Streamer - Terms & Conditions{% endblock %}
+{% block content %}
+<section class="section" style="margin-top: 8rem; min-height: 90vh;">
+  <div class="title-container">
+    <div>
+      <h2 class="title">{% if lang == "ar" %}الشروط والأحكام{% else %}Terms & Conditions{% endif %}</h2>
+    </div>
+  </div>
+  <div class="container">
+      {% if lang == "ar" %}{{ terms_and_conditions.content_ar|safe }}{% else %}{{ terms_and_conditions.content_en|safe }}{% endif %}
+  </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,17 @@
+{% extends "public_site/base.html" %}
+{% load custom_filters %}
+
+{% block title %}Streamer - Privacy Policy{% endblock %}
+{% block content %}
+<section class="section" style="margin-top: 8rem; min-height: 90vh;">
+    <div class="title-container">
+    <div>
+      <h2 class="title">{% if lang == "ar" %}سياسة الخصوصية{% else %}Privacy Policy{% endif %}</h2>
+    </div>
+  </div>
+  <div class="container">
+      {% if lang == "ar" %}{{ privacy_policy.content_ar|safe }}{% else %}{{ privacy_policy.content_en|safe }}{% endif %}
+      
+  </div>
+</section>
+{% endblock %} 

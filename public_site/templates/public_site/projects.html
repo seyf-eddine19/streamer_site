@@ -8,8 +8,7 @@
 <section class="section mb-4">
   <div class="container hero-container">
     <div class="bg-img hero-image">
-      <img src="{% static 'public_site/img/Hero-4.png' %}" alt="hero-image">
-      <!-- <img src="{% static site_content.projects|get_text:'projects_hero_background' %}" alt="hero-image"> -->
+      <img src="{{ site_images.hero_bg_3|default:'' }}" alt="Hero Background">
     </div>
 
     <div class="svg-box box-tl">

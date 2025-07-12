@@ -1,14 +1,171 @@
 {% extends "public_site/base.html" %}
 {% load static custom_filters %}
+{% block extra_css %}
+<style>
+  .about-services .title {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .services-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .services-tab-btn {
+    background: transparent;
+    border: 1px solid #555;
+    color: #ccc;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .services-tab-btn.active {
+    background: #fff;
+    color: #111;
+    font-weight: 600;
+  }
+  
+  .services-tab-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--mb-6) var(--mb-4);
+    position: relative;
+    background: #1a1724;
+    /* color: #fff; */
+    text-align: start;
+    border-radius: 20px;
+    box-shadow: inset 2px 2px 4px -3px rgb(255 255 255 / 27%);
+  }
+.services-tab-content::after, .services-tab-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  max-width: 800px;
+  border-radius: 20px;
+  z-index: var(--z-back);
+}
 
+.services-tab-content::after {
+  left: calc(-100% - 0.5rem);
+  background: linear-gradient(270deg, #1a1724de, transparent);
+}
+.services-tab-content::before {
+  right: calc(-100% - 0.5rem);
+  background: linear-gradient(90deg, #1a1724de, transparent);
+}  
+  .services-tab-content h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  .services-tab-content p {
+    color: #ccc;
+    line-height: 1.8;
+  }
+  
+  .services-tab-content .learn-more {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 10px 24px;
+    border-radius: 30px;
+    background: #fff;
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .services-tab-content .learn-more:hover {
+    background: #eaeaea;
+  }
+  
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  justify-content: center;
+}
+
+.team-card {
+    background-color: #0e0e10;
+    border: 3px solid #1c1c21;
+    border-radius: 16px;
+    padding: 1rem;
+    text-align: start;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.team-card:hover {
+  transform: translateY(-5px);
+}
+
+.team-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.team-card h5 {
+  color: var(--title-color);
+  font-size: var(--normal-font-size);
+}
+
+.team-card p {
+  color: var(--text-color);
+  font-size: var(--small-font-size);
+}
+
+.team-card .team-social-icons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.team-card .team-social-icons a {
+  display: inline-flex;
+  background-color: #2c2c3c;
+  color: #a493ff;
+  padding: 8px;
+  margin: 0 5px;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.team-card .team-social-icons a:hover {
+  background-color: #3c3c50;
+}
+</style>
+{% endblock extra_css %}
 {% block title %}Streamer - About{% endblock %}
 {% block content %}
 <!--===== HERO SECTION =====-->
 <section class="section about-hero mb-4">
   <div class="container hero-container">
     <div class="bg-img hero-image">
-      <img src="{% static 'public_site/img/Hero-2.png' %}" alt="hero-image">
-      <!-- <img src="{% static site_content.about|get_text:'about_hero_background' %}" alt="hero-image"> -->
+      <img src="{{ site_images.hero_bg_2|default:'' }}" alt="Hero Background 2">
     </div>
 
     <div class="svg-box box-tl">
@@ -75,6 +232,85 @@
   </div>
 </section>
 
+<!--===== WHO IS THE STREAMER SECTION =====-->
+<section class="section">
+  <div class="container">
+    <h3 class="title">{{ site_content.about|get_text:"about_streamer_title" }}</h3>
+    <p style="line-height: 1.8">
+      {{ site_content.about|get_text:"about_streamer_text" }}
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container about-services">
+    <h2 class="title">{% if lang == 'ar' %}تصفح خدمات تقنية{% else %}Browse TQNIA services{% endif %}</h2>
+
+    <div class="services-tabs">
+      <button class="services-tab-btn active" data-tab="tab1">
+        {{ site_content.about|get_text:"tab_1_title" }}
+      </button>
+      <button class="services-tab-btn" data-tab="tab2">
+        {{ site_content.about|get_text:"tab_2_title" }}
+      </button>
+      <button class="services-tab-btn" data-tab="tab3">
+        {{ site_content.about|get_text:"tab_3_title" }}
+      </button>
+    </div>
+
+    <div class="container">
+      <div class="services-tab-content" id="tab1">
+        <h4>{{ site_content.about|get_text:"tab_1_title" }}</h4>
+        <p>{{ site_content.about|get_text:"tab_1_text" }}</p>
+      </div>
+  
+      <div class="services-tab-content d-none" id="tab2" style="display:none;">
+        <h4>{{ site_content.about|get_text:"tab_2_title" }}</h4>
+        <p>{{ site_content.about|get_text:"tab_2_text" }}</p>
+      </div>
+  
+      <div class="services-tab-content d-none" id="tab3" style="display:none;">
+        <h4>{{ site_content.about|get_text:"tab_3_title" }}</h4>
+        <p>{{ site_content.about|get_text:"tab_3_text" }}</p>
+      </div>  
+    </div>
+  </div>
+</section>
+
+<!--===== TEAM SECTION =====-->
+<section class="section great-team">
+  <div class="title-container">
+    <div>
+      <h4 class="subtitle">{{ site_content.team|get_text:'team_subtitle'|safe }}</h4>
+      <h2 class="title">{{ site_content.team|get_text:'team_title'|safe }}</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="team-grid">
+      {% for member in team_members %}
+      <div class="team-card">
+        <div class="card-content">
+          <h5>{% if lang == 'ar' %}{{ member.name_ar }}{% else %}{{ member.name_en }}{% endif %}</h5>
+          <p>{% if lang == 'ar' %}{{ member.role_ar }}{% else %}{{ member.role_en }}{% endif %}</p>
+          <div class="team-social-icons">
+            {% if member.facebook_url %}
+              <a href="{{ member.facebook_url }}" target="_blank"><i class="bx bxl-facebook"></i></a>
+            {% endif %}
+            {% if member.instagram_url %}
+              <a href="{{ member.instagram_url }}" target="_blank"><i class="bx bxl-instagram"></i></a>
+            {% endif %}
+            {% if member.twitter_url %}
+              <a href="{{ member.twitter_url }}" target="_blank"><i class="bx bxl-twitter"></i></a>
+            {% endif %}
+          </div>
+        </div>
+        <img src="{{ member.image.url }}" alt="{{ member.name_en }}">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <!--===== FAQ SECTION =====-->
 {% include 'public_site/components/faq_section.html' %}
 
@@ -91,9 +327,33 @@
   {% include "public_site/components/client_swiper.html" %}
 </section>
 {% endif %}
-
 {% endblock %} 
 
 {% block scripts %}
 <script src="{% static 'public_site/js/client_swiper.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".services-tab-btn");
+    const tabs = document.querySelectorAll(".services-tab-content");
+  
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-tab");
+  
+        // Toggle active class
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+  
+        // Show the selected tab
+        tabs.forEach((tab) => {
+          if (tab.id === target) {
+            tab.style.display = "block";
+          } else {
+            tab.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>  
 {% endblock scripts %}
