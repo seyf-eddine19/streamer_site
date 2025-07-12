@@ -1,40 +1,30 @@
 {% load static %}
 <header class="header">
   <nav class="nav">
-    <a href="#" class="nav_logo">
-      <img src="{% static 'public_site/img/logo.png' %}" alt="Logo">
+    <a href="{% url 'index' %}" class="nav_logo">
+      <img class="my-logo" src="{{ site_images.logo|default:'' }}" alt="Site Logo">
     </a>
 
     <div class="nav_menu" id="nav-menu">
-      <a href="{% url 'index' %}" class="nav_link">Home</a>
-      <a href="{% url 'about' %}" class="nav_link">About</a>
-      <a href="{% url 'projects' %}" class="nav_link">Projects</a>
-      <a href="{% url 'index' %}" class="nav_link">Blogs</a>
-      <a href="{% url 'contact' %}" class="nav_link">Contact</a>
+      <a href="{% url 'index' %}" class="nav_link {% if request.path == '/' %}active{% endif %}">{% if lang == 'ar' %}الرئيسية{% else %}home{% endif %}</a>
+      <a href="{% url 'about' %}" class="nav_link {% if '/about/' in request.path %}active{% endif %}">{% if lang == 'ar' %}من نحن{% else %}About{% endif %}</a>
+      <a href="{% url 'projects' %}" class="nav_link {% if '/projects/' in request.path %}active{% endif %}">{% if lang == 'ar' %}المشاريع{% else %}Projects{% endif %}</a>
+      <a href="{% url 'blog_list' %}" class="nav_link {% if '/blog/' in request.path %}active{% endif %}">{% if lang == 'ar' %}المدونة{% else %}Blogs{% endif %}</a>
+      <a href="{% url 'contact' %}" class="nav_link {% if '/contact/' in request.path %}active{% endif %}">{% if lang == 'ar' %}تواصل معنا{% else %}Contact{% endif %}</a>
     </div>
 
     <div class="nav-btns">
-      <!-- <div class="lang-btn">
-        <button class="lang-toggle" onclick="toggleLangMenu()">
-          <img src="{% static 'public_site/img/en-img.png' %}" width="20" alt="Lang"> <span>English</span> ▾
-        </button>
-        <ul class="lang-menu hide" id="lang-menu">
-          <li onclick="setLang('en')"><img src="{% static 'public_site/img/en-img.png' %}" width="18"> English</li>
-          <li onclick="setLang('ar')"><img src="{% static 'public_site/img/en-img.png' %}" width="18"> العربية</li>
-        </ul>
-      </div> -->
-      
       <div class="lang-btn">
         <button class="lang-toggle" onclick="toggleLangMenu()">
-          <img src="{% if lang == 'ar' %}{% static 'public_site/img/en-img.png' %}{% else %}{% static 'public_site/img/en-img.png' %}{% endif %}" width="20" alt="Lang">
+          <img src="{% if lang == 'ar' %}{{ site_images.ar_img|default:'' }}{% else %}{{ site_images.en_img|default:'' }}{% endif %}" width="20" alt="Lang">
           <span>{% if lang == 'ar' %}العربية{% else %}English{% endif %}</span> ▾
         </button>
         <ul class="lang-menu hide" id="lang-menu">
-          <li onclick="submitLangForm('en')">
-            <img src="{% static 'public_site/img/en-img.png' %}" width="18"> English
-          </li>
           <li onclick="submitLangForm('ar')">
-            <img src="{% static 'public_site/img/en-img.png' %}" width="18"> العربية
+            <img src="{{ site_images.ar_img|default:'' }}" alt="Arabic Image" width="18"> العربية
+          </li>
+          <li onclick="submitLangForm('en')">
+            <img src="{{ site_images.en_img|default:'' }}" alt="English Image" width="18"> English
           </li>
         </ul>
         <form id="lang-form" action="{% url 'set_language' %}" method="post" style="display: none;">
