@@ -11,7 +11,6 @@ urlpatterns = [
     path('create-superuser/', create_superuser_view, name='create_superuser'),
     path('admin/', admin.site.urls),
     path('dashboard/', include('team_dashboard.urls')),        # مسار الفريق
-    # path('site-admin/', include('public_site.admin_urls')),  # لوحة تحكم الموقع (عربي فقط)
     path('', include('public_site.urls')),                     # صفحات الموقع
 ]
 
