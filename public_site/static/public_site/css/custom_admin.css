@@ -1,0 +1,74 @@
+/*
+    Custom Modern & Arabic-friendly Django Admin Styles
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #603e82;
+    --secondary: #a279cb;
+    --accent: #E0D7FB;
+    --primary-fg: #ffffff;
+    --body-bg: #ffffff;
+    --body-fg: #8f8f8f;
+    --body-quiet-color: #6B7280;
+    --body-loud-color: #111827;
+    --header-color: #ffffff;
+    --header-branding-color: var(--primary);
+    --header-bg: #000000;
+    --header-link-color: #ffffff;
+    --breadcrumbs-fg: #000000;
+    --breadcrumbs-link-fg: var(--primary);
+    --breadcrumbs-bg: #F3F4F6;
+    --link-fg: #000000;
+    --link-hover-color: #a279cb;
+    --link-selected-fg: #8442c7;
+    --hairline-color: #E5E7EB;
+    --border-color: #CBD5E1;
+    --error-fg: #DC2626;
+    --message-success-bg: #ECFDF5;
+    --message-warning-bg: #FEF3C7;
+    --message-error-bg: #FEE2E2;
+    --darkened-bg: #F9FAFB;
+    --selected-bg: #E0E7FF;
+    --selected-row: #EDE9FE;
+    --button-fg: #ffffff;
+    --button-bg: var(--primary);
+    --button-hover-bg: #a480c9;
+    --default-button-bg: var(--secondary);
+    --default-button-hover-bg: var(--primary);
+    --close-button-bg: #888; /* Previously #bbb, contrast 1.92 */
+    --close-button-hover-bg: #747474;
+    --delete-button-bg: #ba2121;
+    --delete-button-hover-bg: #a41515;
+  
+    --object-tools-fg: var(--button-fg);
+    --object-tools-bg: var(--close-button-bg);
+    --object-tools-hover-bg: var(--close-button-hover-bg);
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  color: var(--body-fg);
+  background: var(--body-bg);
+}
+
+
+#header {
+  background: var(--header-bg);
+  color: var(--header-color);
+  padding: 1.2rem 2rem;
+  border-bottom: 3px solid var(--accent);
+}
+
+#branding h1 {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 24px;
+}
+#user-tools a:focus, #user-tools a:hover {
+  text-decoration: none;
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
