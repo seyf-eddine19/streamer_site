@@ -32,8 +32,8 @@ function submitLangForm(lang) {
 }
 
 
-  // Swiper: Marquee
-const marqueeSwiper = new Swiper(".marquee-swiper", {
+  // Swiper: tagline
+const taglineSwiper = new Swiper(".tagline-swiper", {
   loop: true,
   speed: 3000,
   autoplay: {
@@ -42,9 +42,11 @@ const marqueeSwiper = new Swiper(".marquee-swiper", {
   },
   slidesPerView: "auto",
   freeMode: true,
+  grabCursor: true,
+  freeModeMomentum: false,
+  allowTouchMove: false, 
   spaceBetween: 50,
 });
-
 
 // Swiper: Testimonials
 const testimonialSwiper = new Swiper(".testimonial-swiper", {
