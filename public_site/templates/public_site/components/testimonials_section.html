@@ -32,10 +32,34 @@
             <small>{{ t.address }}</small>
           </div>
           <div class="social-icons">
-            {% if t.facebook_url %}<a href="{{ t.facebook_url }}"><i class='bx bxl-facebook'></i></a>{% endif %}
-            {% if t.twitter_url %}<a href="{{ t.twitter_url }}"><i class='bx bxl-twitter'></i></a>{% endif %}
-            {% if t.linkedin_url %}<a href="{{ t.linkedin_url }}"><i class='bx bxl-linkedin'></i></a>{% endif %}
+            {% if t.facebook_url %}
+              <a href="{{ t.facebook_url }}"
+                 aria-label="Visit Facebook profile"
+                 target="_blank"
+                 rel="noopener">
+                <i class="bx bxl-facebook"></i>
+              </a>
+            {% endif %}
+          
+            {% if t.twitter_url %}
+              <a href="{{ t.twitter_url }}"
+                 aria-label="Visit Twitter profile"
+                 target="_blank"
+                 rel="noopener">
+                <i class="bx bxl-twitter"></i>
+              </a>
+            {% endif %}
+          
+            {% if t.linkedin_url %}
+              <a href="{{ t.linkedin_url }}"
+                 aria-label="Visit LinkedIn profile"
+                 target="_blank"
+                 rel="noopener">
+                <i class="bx bxl-linkedin"></i>
+              </a>
+            {% endif %}
           </div>
+          
         </div>
         <div class="stars">
           {% for i in "12345"|make_list %}
