@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
 from .models import (
     SiteContent, SiteImage, TeamMember, Service, Project, ProjectCategory,
@@ -11,6 +12,8 @@ class SiteContentAdmin(admin.ModelAdmin):
     list_filter = ('type', 'section')
     readonly_fields = ('key', 'type', 'section')
 
+    def has_delete_permission(self, request, obj=None):
+        return False  # ⛔️ منع الحذف من لوحة الإدارة
 
 @admin.register(SiteImage)
 class SiteImageAdmin(admin.ModelAdmin):
@@ -18,6 +21,9 @@ class SiteImageAdmin(admin.ModelAdmin):
     search_fields = ('key',)
     list_filter = ('section',)
     readonly_fields = ('key', 'section')
+
+    def has_delete_permission(self, request, obj=None):
+        return False  # ⛔️ منع الحذف من لوحة الإدارة
 
 @admin.register(TeamMember)
 class TeamMemberAdmin(admin.ModelAdmin):
@@ -39,7 +45,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_filter = ('categories', 'date')
     search_fields = ('title_ar', 'title_en', 'description_ar', 'description_en')
     list_per_page = 20
-    
+
     def get_categories(self, obj):
         return ", ".join([cat.name_ar for cat in obj.categories.all()])
     get_categories.short_description = 'التصنيفات'
@@ -96,6 +102,6 @@ class ServiceAdmin(admin.ModelAdmin):
 
 
 # Admin Site Customization
-admin.site.site_header = "لوحة التحكم"
-admin.site.site_title = "إدارة الموقع"
-admin.site.index_title = "مرحبًا بك في لوحة الإدارة"
+admin.site.site_header = _("Admin Panel")
+admin.site.site_title = _("Site Management")
+admin.site.index_title = _("Welcome to the Admin Dashboard")

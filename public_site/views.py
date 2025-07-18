@@ -46,7 +46,7 @@ def ensure_minimum_items(queryset, minimum=12):
 
 def home_view(request):
     lang = get_language()
-    images = get_site_images(['hero_bg_1', 'logo', 'about_img', 'ar_img', 'en_img', 'footer_bg'])
+    images = get_site_images(['hero_bg_1', 'about_video_preview', 'logo', 'about_img', 'ar_img', 'en_img', 'footer_bg'])
     hero_taglines = SiteContent.objects.filter(
         section='hero',
         key__startswith='hero_tagline_'

@@ -231,8 +231,12 @@ class BlogPost(models.Model):
     title_ar = models.CharField(_("Title (AR)"), max_length=200)
     content_en = models.TextField(_("Content (EN)"))
     content_ar = models.TextField(_("Content (AR)"))
-    image = models.ImageField(upload_to='blog/', null=True, blank=True)
+    image = models.ImageField(upload_to='public_site/blog/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = _("Blog Post")
+        verbose_name_plural = _("Blog Posts")
 
     def __str__(self):
         return self.title_en
