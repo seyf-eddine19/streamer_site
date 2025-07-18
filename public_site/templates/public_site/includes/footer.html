@@ -102,9 +102,26 @@
     </p>
 
     <div class="social-icons">
-      <a href="{{ about_links|get_by_key:'social_facebook'|get_content_by_lang:lang }}"><i class='bx bxl-facebook-circle'></i></a>
-      <a href="{{ about_links|get_by_key:'social_youtube'|get_content_by_lang:lang }}"><i class="bx bxl-youtube"></i></a>
-      <a href="{{ about_links|get_by_key:'social_tiktok'|get_content_by_lang:lang }}"><i class="bx bxl-tiktok"></i></a>      
+      <a href="{{ about_links|get_by_key:'social_facebook'|get_content_by_lang:lang }}"
+          aria-label="Visit our Facebook page"
+          target="_blank"
+          rel="noopener">
+         <i class="bx bxl-facebook-circle"></i>
+      </a>
+       
+      <a href="{{ about_links|get_by_key:'social_youtube'|get_content_by_lang:lang }}"
+          aria-label="Visit our YouTube channel"
+          target="_blank"
+          rel="noopener">
+         <i class="bx bxl-youtube"></i>
+      </a>
+       
+      <a href="{{ about_links|get_by_key:'social_tiktok'|get_content_by_lang:lang }}"
+          aria-label="Visit our TikTok profile"
+          target="_blank"
+          rel="noopener">
+         <i class="bx bxl-tiktok"></i>
+      </a>
     </div>
   </div>
 

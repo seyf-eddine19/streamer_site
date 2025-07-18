@@ -16,15 +16,15 @@
     <div class="nav-btns">
       <div class="lang-btn">
         <button class="lang-toggle" onclick="toggleLangMenu()">
-          <img src="{% if lang == 'ar' %}{{ site_images.ar_img|default:'' }}{% else %}{{ site_images.en_img|default:'' }}{% endif %}" width="20" alt="Lang">
+          <img src="{% if lang == 'ar' %}{{ site_images.ar_img|default:'' }}{% else %}{{ site_images.en_img|default:'' }}{% endif %}" width="18" height="16" alt="Lang">
           <span>{% if lang == 'ar' %}العربية{% else %}English{% endif %}</span> ▾
         </button>
         <ul class="lang-menu hide" id="lang-menu">
           <li onclick="submitLangForm('ar')">
-            <img src="{{ site_images.ar_img|default:'' }}" alt="Arabic Image" width="18"> العربية
+            <img src="{{ site_images.ar_img|default:'' }}" alt="Arabic Image" width="18" height="16"> العربية
           </li>
           <li onclick="submitLangForm('en')">
-            <img src="{{ site_images.en_img|default:'' }}" alt="English Image" width="18"> English
+            <img src="{{ site_images.en_img|default:'' }}" alt="English Image" width="18" height="16"> English
           </li>
         </ul>
         <form id="lang-form" action="{% url 'set_language' %}" method="post" style="display: none;">
