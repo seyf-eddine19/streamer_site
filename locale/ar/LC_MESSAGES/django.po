@@ -1,1 +1,368 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-12 16:13+0000\n"
+"PO-Revision-Date: 2025-07-12 17:00+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Arabic <ar@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
+#: public_site/admin.py:105
+msgid "Admin Panel"
+msgstr "لوحة التحكم"
+
+#: public_site/admin.py:106
+msgid "Site Management"
+msgstr "إدارة الموقع"
+
+#: public_site/admin.py:107
+msgid "Welcome to the Admin Dashboard"
+msgstr "مرحبًا بك في لوحة الإدارة"
+
+#: public_site/models.py:9 public_site/models.py:65
+msgid "Header"
+msgstr "رأس الصفحة"
+
+#: public_site/models.py:10
+msgid "Hero"
+msgstr "قسم البطل"
+
+#: public_site/models.py:11 public_site/models.py:67
+msgid "About"
+msgstr "من نحن"
+
+#: public_site/models.py:12 public_site/models.py:158
+msgid "Games"
+msgstr "الألعاب"
+
+#: public_site/models.py:13 public_site/models.py:115
+msgid "Services"
+msgstr "الخدمات"
+
+#: public_site/models.py:14 public_site/models.py:68 public_site/models.py:132
+msgid "Projects"
+msgstr "المشاريع"
+
+#: public_site/models.py:15 public_site/models.py:171
+msgid "FAQ"
+msgstr "الأسئلة الشائعة"
+
+#: public_site/models.py:16 public_site/models.py:194
+msgid "Testimonials"
+msgstr "آراء العملاء"
+
+#: public_site/models.py:17
+msgid "Team"
+msgstr "الفريق"
+
+#: public_site/models.py:18 public_site/models.py:69
+msgid "Blog"
+msgstr "المدونة"
+
+#: public_site/models.py:19
+msgid "Clients"
+msgstr "العملاء"
+
+#: public_site/models.py:20 public_site/models.py:70
+msgid "Contact"
+msgstr "اتصل بنا"
+
+#: public_site/models.py:21 public_site/models.py:71
+msgid "Footer"
+msgstr "تذييل"
+
+#: public_site/models.py:25
+msgid "Title"
+msgstr "العنوان"
+
+#: public_site/models.py:26
+msgid "Subtitle"
+msgstr "العنوان الفرعي"
+
+#: public_site/models.py:27
+msgid "Paragraph"
+msgstr "فقرة"
+
+#: public_site/models.py:28
+msgid "Button"
+msgstr "زر"
+
+#: public_site/models.py:29
+msgid "Video"
+msgstr "فيديو"
+
+#: public_site/models.py:30
+msgid "Link"
+msgstr "رابط"
+
+#: public_site/models.py:40 public_site/models.py:74
+msgid "Section"
+msgstr "القسم"
+
+#: public_site/models.py:41
+msgid "Content Type"
+msgstr "نوع المحتوى"
+
+#: public_site/models.py:43 public_site/models.py:75
+msgid "Unique Key"
+msgstr "مفتاح فريد"
+
+#: public_site/models.py:44
+msgid "Content (Arabic)"
+msgstr "المحتوى (بالعربية)"
+
+#: public_site/models.py:45
+msgid "Content (English)"
+msgstr "المحتوى (بالإنجليزية)"
+
+#: public_site/models.py:54 public_site/models.py:55
+msgid "Site Content"
+msgstr "محتوى الموقع"
+
+#: public_site/models.py:66
+msgid "home"
+msgstr "الرئيسية"
+
+#: public_site/models.py:76 public_site/models.py:93 public_site/models.py:127
+#: public_site/models.py:153
+msgid "Image"
+msgstr "صورة"
+
+#: public_site/models.py:79
+msgid "Site Image"
+msgstr "صورة الموقع"
+
+#: public_site/models.py:80
+msgid "Site Images"
+msgstr "صور الموقع"
+
+#: public_site/models.py:89 public_site/models.py:140 public_site/models.py:151
+#: public_site/models.py:201
+msgid "Name (Arabic)"
+msgstr "الاسم (بالعربية)"
+
+#: public_site/models.py:90 public_site/models.py:139 public_site/models.py:152
+#: public_site/models.py:202
+msgid "Name (English)"
+msgstr "الاسم (بالإنجليزية)"
+
+#: public_site/models.py:91
+msgid "Role (Arabic)"
+msgstr "الدور (بالعربية)"
+
+#: public_site/models.py:92
+msgid "Role (English)"
+msgstr "الدور (بالإنجليزية)"
+
+#: public_site/models.py:94 public_site/models.py:187
+msgid "Facebook URL"
+msgstr "رابط فيسبوك"
+
+#: public_site/models.py:95
+msgid "Instagram URL"
+msgstr "رابط إنستغرام"
+
+#: public_site/models.py:96 public_site/models.py:188
+msgid "Twitter URL"
+msgstr "رابط تويتر"
+
+#: public_site/models.py:99
+msgid "Team Member"
+msgstr "عضو فريق"
+
+#: public_site/models.py:100
+msgid "Team Members"
+msgstr "أعضاء الفريق"
+
+#: public_site/models.py:107 public_site/models.py:122
+msgid "Title (Arabic)"
+msgstr "العنوان (بالعربية)"
+
+#: public_site/models.py:108 public_site/models.py:123
+msgid "Title (English)"
+msgstr "العنوان (بالإنجليزية)"
+
+#: public_site/models.py:109 public_site/models.py:125
+msgid "Description (Arabic)"
+msgstr "الوصف (بالعربية)"
+
+#: public_site/models.py:110 public_site/models.py:126
+msgid "Description (English)"
+msgstr "الوصف (بالإنجليزية)"
+
+#: public_site/models.py:111
+msgid "Icon"
+msgstr "أيقونة"
+
+#: public_site/models.py:114
+msgid "Service"
+msgstr "الخدمة"
+
+#: public_site/models.py:124
+msgid "Categories"
+msgstr "الفئات"
+
+#: public_site/models.py:128
+msgid "Date"
+msgstr "تاريخ"
+
+#: public_site/models.py:131
+msgid "Project"
+msgstr "مشروع"
+
+#: public_site/models.py:143
+msgid "Project Category"
+msgstr "فئة المشروع"
+
+#: public_site/models.py:144
+msgid "Project Categories"
+msgstr "فئات المشاريع"
+
+#: public_site/models.py:154
+msgid "Game URL"
+msgstr "رابط اللعبة"
+
+#: public_site/models.py:157
+msgid "Game"
+msgstr "لعبة"
+
+#: public_site/models.py:165
+msgid "Question (Arabic)"
+msgstr "السؤال (بالعربية)"
+
+#: public_site/models.py:166
+msgid "Question (English)"
+msgstr "السؤال (بالإنجليزية)"
+
+#: public_site/models.py:167
+msgid "Answer (Arabic)"
+msgstr "الإجابة (بالعربية)"
+
+#: public_site/models.py:168
+msgid "Answer (English)"
+msgstr "الإجابة (بالإنجليزية)"
+
+#: public_site/models.py:172
+msgid "FAQs"
+msgstr "الأسئلة الشائعة"
+
+#: public_site/models.py:179
+msgid "Name"
+msgstr "الاسم"
+
+#: public_site/models.py:180
+msgid "City or Country"
+msgstr "المدينة أو البلد"
+
+#: public_site/models.py:181
+msgid "Comment (Arabic)"
+msgstr "التعليق (بالعربية)"
+
+#: public_site/models.py:182
+msgid "Comment (English)"
+msgstr "التعليق (بالإنجليزية)"
+
+#: public_site/models.py:185
+msgid "Rating (1 to 5)"
+msgstr "التقييم (من 1 إلى 5)"
+
+#: public_site/models.py:189
+msgid "LinkedIn URL"
+msgstr "رابط لينكد إن"
+
+#: public_site/models.py:190
+msgid "Created At"
+msgstr "تاريخ الإنشاء"
+
+#: public_site/models.py:193
+msgid "Testimonial"
+msgstr "رأي عميل"
+
+#: public_site/models.py:203
+msgid "Logo"
+msgstr "شعار"
+
+#: public_site/models.py:206
+msgid "Client Logo"
+msgstr "شعار العميل"
+
+#: public_site/models.py:207
+msgid "Client Logos"
+msgstr "شعارات العملاء"
+
+#: public_site/models.py:214
+msgid "First Name"
+msgstr "الاسم الأول"
+
+#: public_site/models.py:215
+msgid "Last Name"
+msgstr "الاسم الأخير"
+
+#: public_site/models.py:216
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: public_site/models.py:217
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#: public_site/models.py:218
+msgid "Message"
+msgstr "الرسالة"
+
+#: public_site/models.py:219
+msgid "Sent At"
+msgstr "تم الإرسال في"
+
+#: public_site/models.py:222
+msgid "Contact Message"
+msgstr "رسالة تواصل"
+
+#: public_site/models.py:223
+msgid "Contact Messages"
+msgstr "رسائل التواصل"
+
+#: public_site/models.py:230
+msgid "Title (EN)"
+msgstr "العنوان (بالإنجليزية)"
+
+#: public_site/models.py:231
+msgid "Title (AR)"
+msgstr "العنوان (بالعربية)"
+
+#: public_site/models.py:232
+msgid "Content (EN)"
+msgstr "المحتوى (بالإنجليزية)"
+
+#: public_site/models.py:233
+msgid "Content (AR)"
+msgstr "المحتوى (بالعربية)"
+
+#: public_site/models.py:238
+#, fuzzy
+#| msgid "Blog"
+msgid "Blog Post"
+msgstr "المدونة"
+
+#: public_site/models.py:239
+msgid "Blog Posts"
+msgstr "مقالات المدونة"
+
+#: templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr "إدارة موقع Django"
+
+#: templates/admin/base_site.html:14
+msgid "Django administration"
+msgstr "لوحة إدارة Django"
