@@ -174,7 +174,7 @@
       <div class="svg-text">
         <div style="position: relative;">
           <p class="subtitle">{{ site_content.about|get_text:'about_subtitle'|safe }}</p>
-          <h2 class="title">{{ site_content.about|get_text:'about_main_title'|safe }}</h2>
+          <h1 class="title">{{ site_content.about|get_text:'about_main_title'|safe }}</h1>
         </div>
       </div>
     </div>
@@ -294,15 +294,22 @@
           <p>{% if lang == 'ar' %}{{ member.role_ar }}{% else %}{{ member.role_en }}{% endif %}</p>
           <div class="team-social-icons">
             {% if member.facebook_url %}
-              <a href="{{ member.facebook_url }}" target="_blank"><i class="bx bxl-facebook"></i></a>
+              <a href="{{ member.facebook_url }}" aria-label="Visit {{ member.name }} on Facebook" target="_blank" rel="noopener">
+                <i class="bx bxl-facebook"></i>
+              </a>
             {% endif %}
             {% if member.instagram_url %}
-              <a href="{{ member.instagram_url }}" target="_blank"><i class="bx bxl-instagram"></i></a>
+              <a href="{{ member.instagram_url }}" aria-label="Visit {{ member.name }} on Instagram" target="_blank" rel="noopener">
+                <i class="bx bxl-instagram"></i>
+              </a>
             {% endif %}
             {% if member.twitter_url %}
-              <a href="{{ member.twitter_url }}" target="_blank"><i class="bx bxl-twitter"></i></a>
+              <a href="{{ member.twitter_url }}" aria-label="Visit {{ member.name }} on Twitter" target="_blank" rel="noopener">
+                <i class="bx bxl-twitter"></i>
+              </a>
             {% endif %}
           </div>
+          
         </div>
         <img src="{{ member.image.url }}" alt="{{ member.name_en }}">
       </div>
@@ -330,6 +337,7 @@
 {% endblock %} 
 
 {% block scripts %}
+<script src="{% static 'public_site/js/testimonial_swiper.js' %}"></script>
 <script src="{% static 'public_site/js/client_swiper.js' %}"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

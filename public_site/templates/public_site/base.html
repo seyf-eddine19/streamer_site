@@ -7,28 +7,28 @@
   <meta name="description" content="{% if lang == 'ar' %}{{ meta_description|default:"اكتشف محتوى الألعاب، التقييمات، والمراجعات من قبل ستريمر محترف." }}{% else %}{{ meta_description|default:"Explore gaming content, reviews, and gameplay from a professional streamer." }}{% endif %}">
   <meta name="keywords" content="{% if lang == 'ar' %}ألعاب, ستريمر, يوتيوب, فيديوهات ألعاب, تقييمات, مراجعات{% else %}Games, Streamer, YouTube, Game Videos, Reviews{% endif %}">
   <meta name="author" content="{% if lang == 'ar' %}موقع ستريمر{% else %}Streamer Website{% endif %}">
-  
+
   <!-- Open Graph Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="{% if lang == 'ar' %}{{ meta_title|default:"موقع ستريمر | فيديوهات وتقييمات ألعاب" }}{% else %}{{ meta_title|default:"Streamer Website | Game Reviews & Videos" }}{% endif %}">
   <meta property="og:description" content="{% if lang == 'ar' %}{{ meta_description|default:"اكتشف محتوى الألعاب، التقييمات، والمراجعات من قبل ستريمر محترف." }}{% else %}{{ meta_description|default:"Explore gaming content, reviews, and gameplay from a professional streamer." }}{% endif %}">
   <meta property="og:image" content="{{ meta_image|default:site_images.footer_bg }}">
   <meta property="og:url" content="{{ request.build_absolute_uri }}">
-  
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{% if lang == 'ar' %}{{ meta_title|default:"موقع ستريمر | فيديوهات وتقييمات ألعاب" }}{% else %}{{ meta_title|default:"Streamer Website | Game Reviews & Videos" }}{% endif %}">
   <meta name="twitter:description" content="{% if lang == 'ar' %}{{ meta_description|default:"اكتشف محتوى الألعاب، التقييمات، والمراجعات من قبل ستريمر محترف." }}{% else %}{{ meta_description|default:"Explore gaming content, reviews, and gameplay from a professional streamer." }}{% endif %}">
   <meta name="twitter:image" content="{{ meta_image|default:site_images.logo }}">
-  
+
   {% block metatags %}{% endblock metatags %}
 
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+  <link rel="stylesheet" href="{% static 'public_site/css/boxicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'public_site/css/swiper-bundle.min.css' %}">
+  <link rel="preload" href="{% static 'public_site/fonts/boxicons.woff2' %}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{% static 'public_site/css/styles.css' %}">
   {% block extra_css %}{% endblock extra_css %}
-    
+
   <link rel="shortcut icon" href="{% static 'public_site/img/logo.png' %}" type="image/png">
   <title>{% block title %}Gaming Stream{% endblock %}</title>
 </head>
@@ -46,7 +46,7 @@
   {% include 'public_site/includes/footer.html' %}
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="{% static 'public_site/js/main.js' %}"></script>
+  <script src="{% static 'public_site/js/main.js' %}" defer></script>
   {% block scripts %}{% endblock scripts %}
 </body>
 </html>

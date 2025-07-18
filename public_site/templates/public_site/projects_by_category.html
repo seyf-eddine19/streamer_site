@@ -9,7 +9,7 @@
   <div class="title-container">
     <div>
       <h4 class="subtitle">{{ site_content.projects|get_text:'projects_subtitle'|safe }}</h4>
-      <h2 class="title">{{ site_content.projects|get_text:'projects_title'|safe }}</h2>
+      <h1 class="title">{{ site_content.projects|get_text:'projects_title'|safe }}</h1>
       <h3 class="title is-4">
         {% if lang == "ar" %}{{ current_category.name_ar }}{% else %}{{ current_category.name_en }}{% endif %}
       </h3>

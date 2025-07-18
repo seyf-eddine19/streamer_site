@@ -18,7 +18,7 @@
       <div class="svg-text b-br">
         <div style="position: relative;">
           <p class="subtitle">{{ site_content.projects|get_text:'projects_subtitle' }}</p>
-          <h2 class="title">{{ site_content.projects|get_text:'projects_title' }}</h2>
+          <h1 class="title">{{ site_content.projects|get_text:'projects_title' }}</h1>
         </div>
         <p>{{ site_content.projects|get_text:'projects_hero_description' }}</p>
       </div>
@@ -104,10 +104,11 @@
 <!--===== TESTIMONIALS SECTION =====-->
 {% include 'public_site/components/testimonials_section.html' %}
 
-{% endblock %} 
+{% endblock %}
 
 {% block scripts %}
-<script src="{% static 'public_site/js/client_swiper.js' %}"></script>
 <script src="{% static 'public_site/js/projects_swipers.js' %}"></script>
 <script src="{% static 'public_site/js/faq_section.js' %}"></script>
+<script src="{% static 'public_site/js/testimonial_swiper.js' %}"></script>
+<script src="{% static 'public_site/js/client_swiper.js' %}"></script>
 {% endblock scripts %}

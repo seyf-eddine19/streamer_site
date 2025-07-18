@@ -129,15 +129,66 @@
 <!--===== VIDEO SECTION =====-->
 <section class="section">
   <h2 class="video-title">{{ site_content.about|get_text:'video_title'|safe }}</h2>
-  <div class="container video-container">
 
-    <div class="video-wrapper">
-      <div class="video-iframe" id="videoBox">
-        {{ site_content.about|get_text:'video_youtube_iframe'|safe }}
+  <div class="container video-container video-wrapper">
+    <!-- معاينة الفيديو -->
+    <div class="video-iframe">
+      <div
+        class="video-preview"
+        style="width:100%; max-width:640px; height:400px; overflow: hidden; margin:auto;"
+        role="button"
+        tabindex="0"
+        aria-label="Play video"
+        onclick="loadYoutubeIframe()"
+        onkeypress="if(event.key === 'Enter'){ loadYoutubeIframe(); }">
+        <img
+          src="{{ site_images.about_video_preview|default:'' }}"
+          alt="Video preview"
+          loading="lazy"
+          style="object-fit: cover;"/>
+        <div
+          class="play-button"
+          aria-hidden="true"
+          style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 50%;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <i class="bx bx-play" style="font-size: 2.5rem; color: var(--first-color);"></i>
       </div>
+      </div>
+      <div id="video-box" style="display:none; height:400px;" aria-hidden="true"></div>
     </div>
   </div>
+
+  <script>
+    function loadYoutubeIframe() {
+      const preview = document.querySelector('.video-preview');
+      const iframeBox = document.getElementById('video-box');
+
+      preview.style.display = 'none';
+      iframeBox.style.display = 'block';
+      iframeBox.setAttribute('aria-hidden', 'false');
+
+      // Replace the iframe with autoplay enabled
+      const iframeHTML = `{{ site_content.about|get_text:'video_youtube_iframe'|safe }}`;
+      const iframeWithAutoplay = iframeHTML.replace(
+        /src="([^"]+)"/,
+        'src="$1&autoplay=1" allow="autoplay"'
+      );
+      iframeBox.innerHTML = iframeWithAutoplay;
+    }
+  </script>
 </section>
+
 
 <!--===== PROJECTS SECTION =====-->
 {% include "public_site/components/projects_section.html" %}
@@ -161,8 +212,10 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{% static 'public_site/js/tagline_swiper.js' %}"></script>
 <script src="{% static 'public_site/js/games_swiper.js' %}"></script>
 <script src="{% static 'public_site/js/projects_swipers.js' %}"></script>
 <script src="{% static 'public_site/js/faq_section.js' %}"></script>
+<script src="{% static 'public_site/js/testimonial_swiper.js' %}"></script>
 <script src="{% static 'public_site/js/client_swiper.js' %}"></script>
 {% endblock scripts %}
