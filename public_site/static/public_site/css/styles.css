@@ -3,14 +3,15 @@
 Name:     Seyf Eddine Abdellaoui
 Date:     27/06/2025
 -----------------------------------------------
-*/ 
+*/
 
 /*===== GOOGLE FONTS =====*/
 @font-face {
   font-family: 'ES Build TRIAL';
-  src: url('../fonts/ESBuildTrial-Regular.otf') format('opentype');
+  src: url('../fonts/ESBuildTRIAL-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
@@ -88,7 +89,7 @@ body {
 
 p {
   font-family: var(--secend-font);
-  font-weight: 600; 
+  font-weight: 600;
 }
 
 ul {
@@ -147,13 +148,13 @@ img, video {
 .nav_item {
   display: inline-block;
   margin: .5rem 0;
-} 
+}
 .nav_link, .nav_toggle {
   padding: .75rem 1rem;
   color: var(--text-color);
   font-size: var(--normal-font-size);
   border-radius: 12px;
-}  
+}
 .nav_link:hover, .active {
   background: var(--container-color);
   color: var(--title-color);
@@ -183,7 +184,7 @@ img, video {
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 
+  box-shadow:
     inset 0 0 10px 0px rgba(255, 255, 255, 0.274),  /* inner shadow */
     0px 0px 10px 3px rgba(139, 60, 255, 0.4);        /* outer glow */
   transition: all 0.3s ease;
@@ -258,7 +259,7 @@ img, video {
 /*===== MAIN =====*/
 .main {
   width: 100%;
-  margin: auto;  
+  margin: auto;
 }
 .section {
   width: 100%;
@@ -704,6 +705,7 @@ html[dir='rtl'] .hero-image {
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: .75rem;
+  padding: 0 2rem;
   margin: auto;
   margin-top: var(--mb-4);
 }
@@ -1226,7 +1228,7 @@ span.cta-span {
   display: block;
   position: relative;
   color: white;
-}        
+}
 .svg-box svg {
   display: block;
   width: 1.5rem;
@@ -1309,7 +1311,7 @@ span.cta-span {
   object-fit: cover;
 }
 
-@media screen and (max-width: 468px){ 
+@media screen and (max-width: 468px){
   .hero-container {
     padding-bottom: 100%;
   }
